@@ -1,0 +1,29 @@
+<tabs
+  [tabs]="tabs"
+  [selectedTabIndex]="selectedTabIndex"
+  [maxLabelLength]="maxTabLabelLength"
+  (selectedTabIndexChange)="selectedTabIndex = $event"
+/>
+<!-- <tabs
+  [tabs]="tabs"
+  [selectedTabIndex]="selectedTabIndex"
+  (selectedTabIndexChange)="selectedTabIndex = $event"
+/> -->
+
+<p>選択されたタブを表示するサンプル</p>
+
+@if (selectedTabIndex === 0) {
+  <div>
+    <p>タブ0のコンテンツです</p>
+  </div>
+}
+@if (selectedTabIndex === 1) {
+  <div>
+    <p>タブ1のコンテンツです</p>
+  </div>
+}
+@if (selectedTabIndex === 2) {
+  <div>
+    <p>タブ2のコンテンツです</p>
+  </div>
+}
