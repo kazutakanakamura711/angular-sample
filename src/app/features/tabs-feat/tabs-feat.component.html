@@ -4,26 +4,21 @@
   [maxLabelLength]="maxTabLabelLength"
   (selectedTabIndexChange)="selectedTabIndex = $event"
 />
-<!-- <tabs
-  [tabs]="tabs"
-  [selectedTabIndex]="selectedTabIndex"
-  (selectedTabIndexChange)="selectedTabIndex = $event"
-/> -->
 
 <p>選択されたタブを表示するサンプル</p>
 
 @if (selectedTabIndex === 0) {
   <div>
-    <app-tab-content0 [text]="tabs[selectedTabIndex]" />
+    <app-tab-content0 [text]="tabs[selectedTabIndex].label || ''" />
   </div>
 }
 @if (selectedTabIndex === 1) {
   <div>
-    <app-tab-content0 [text]="tabs[selectedTabIndex]" />
+    <app-tab-content0 [text]="tabs[selectedTabIndex].label || ''" />
   </div>
 }
 @if (selectedTabIndex === 2) {
   <div>
-    <app-tab-content0 [text]="tabs[selectedTabIndex]" />
+    <app-tab-content0 [text]="tabs[selectedTabIndex].label || ''" />
   </div>
 }

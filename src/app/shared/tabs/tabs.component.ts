@@ -1,8 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-export interface TabsComponentProps {
-  tabs: string[];
+export interface Tab {
+  label: string;
+  isDisabled?: boolean;
+}
+
+interface TabsComponentProps {
+  tabs: Tab[];
   selectedTabIndex?: number;
   maxLabelLength?: number;
 }
@@ -12,10 +17,10 @@ export interface TabsComponentProps {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './tabs.component.html',
-  styleUrl: './tabs.component.scss',
+  styleUrls: ['./tabs.component.scss'],
 })
 export class TabsComponent implements OnInit, TabsComponentProps {
-  @Input() tabs: string[] = [];
+  @Input() tabs: Tab[] = [];
   @Input() selectedTabIndex?: number;
   @Input() maxLabelLength?: number;
   @Output() selectedTabIndexChange = new EventEmitter<number>();
@@ -28,6 +33,7 @@ export class TabsComponent implements OnInit, TabsComponentProps {
   }
 
   selectTab(index: number) {
+    if (this.tabs[index].isDisabled) return; // タブが非活性の場合は何もしない
     this.selectedTabIndex = index;
     this.selectedTabIndexChange.emit(this.selectedTabIndex);
   }
@@ -36,7 +42,6 @@ export class TabsComponent implements OnInit, TabsComponentProps {
     return this.selectedTabIndex === index;
   }
 
-  // 省略された場合に完全なラベルを返す
   getTruncatedLabel(label: string): { display: string; isTruncated: boolean } {
     const isTruncated =
       this.maxLabelLength != null && label.length > this.maxLabelLength;
