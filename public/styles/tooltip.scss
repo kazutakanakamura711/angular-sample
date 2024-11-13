@@ -1,0 +1,38 @@
+// ツールチップのスタイル
+.dn-i-tooltip {
+  position: relative;
+  cursor: pointer;
+
+  // ツールチップがホバーされたときのスタイル
+  &[data-tooltip-text]:hover::after {
+    content: attr(data-tooltip-text); // 完全なラベルを表示
+    position: absolute;
+    bottom: 100%; // ホバーした要素の上に表示
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 4px 8px;
+    line-height: 24px;
+    border-radius: 4px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s;
+    max-width: 480px; // 横幅の最大値
+    width: max-content; // 内容に応じた幅
+    white-space: normal; // 折り返しを許可
+    overflow-wrap: break-word; // 長い単語を折り返し
+    display: inline-block; // 横幅の自動調整
+  }
+
+  // ツールチップが非表示のデフォルトスタイル
+  &::after {
+    content: '';
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

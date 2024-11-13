@@ -3,19 +3,24 @@
     <ul class="flex list-none p-0 m-0">
       @for (tab of tabs; track $index; let index = $index) {
         <li
+          class="dn-i-tooltip"
           (click)="selectTab(index)"
-          [ngClass]="{
-            'bg-[#032A58] text-white border-2 border-[#106ACC]':
-              isActive(index),
-            'bg-[#F7F7F7] text-[#0F0F0F] border border-[#BFBFBF]':
-              !isActive(index)
-          }"
-          [style.padding-bottom]="isActive(index) ? '4px' : ''"
-          [style.margin-bottom]="isActive(index) ? '-1px' : ''"
-          class="cursor-pointer inline-block px-8 py-2 border-b-0 transition-colors ml-1.5 rounded-t-lg hover:opacity-70"
+          [attr.data-tooltip-text]="getTooltipLabel(tab)"
         >
-          <button class="overflow-hidden text-ellipsis whitespace-nowrap">
-            {{ getTruncatedLabel(tab) }}
+          <button
+            class="overflow-hidden text-ellipsis whitespace-nowrap"
+            [ngClass]="{
+              'bg-[#032A58] text-white border-2 border-[#106ACC]':
+                isActive(index),
+              'bg-[#F7F7F7] text-[#060505] border border-[#BFBFBF]':
+                !isActive(index)
+            }"
+            [style.padding-bottom]="isActive(index) ? '8px' : ''"
+            [style.margin-bottom]="isActive(index) ? '-1px' : ''"
+            class="cursor-pointer inline-block px-8 py-2 border-b-0 transition-colors ml-1.5 rounded-t-lg hover:opacity-70 dn-i-tooltip"
+            [attr.data-tooltip-text]="getTooltipLabel(tab)"
+          >
+            {{ getTruncatedLabel(tab).display }}
           </button>
         </li>
       }
@@ -23,6 +28,7 @@
   </div>
 </div>
 
+<!-- tailwind化する前のスタイル -->
 <!-- <div class="s_section">
   <div class="gutter">
     <div class="tabs-container">

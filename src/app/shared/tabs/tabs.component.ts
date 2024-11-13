@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 export interface TabsComponentProps {
   tabs: string[];
-  selectedTabIndex?: number; // 親から渡された場合に初期表示するタブのインデックス
-  maxLabelLength?: number; // 省略文字数のオプション
+  selectedTabIndex?: number;
+  maxLabelLength?: number;
 }
 
 @Component({
@@ -12,16 +12,15 @@ export interface TabsComponentProps {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './tabs.component.html',
+  styleUrl: './tabs.component.scss',
 })
 export class TabsComponent implements OnInit, TabsComponentProps {
   @Input() tabs: string[] = [];
-  @Input() selectedTabIndex?: number; // 親から受け取る初期インデックス
-  @Input() maxLabelLength?: number; // 省略文字数のオプション
-
+  @Input() selectedTabIndex?: number;
+  @Input() maxLabelLength?: number;
   @Output() selectedTabIndexChange = new EventEmitter<number>();
 
   ngOnInit() {
-    // selectedTabIndex が undefined または null の場合は 0 に設定
     if (this.selectedTabIndex === null || this.selectedTabIndex === undefined) {
       this.selectedTabIndex = 0;
     }
@@ -37,13 +36,18 @@ export class TabsComponent implements OnInit, TabsComponentProps {
     return this.selectedTabIndex === index;
   }
 
-  getTruncatedLabel(label: string): string {
-    // maxLabelLength が未設定または 0 以下の場合は省略せずそのまま表示
-    if (!this.maxLabelLength || this.maxLabelLength <= 0) {
-      return label;
-    }
-    return label.length > this.maxLabelLength
+  // 省略された場合に完全なラベルを返す
+  getTruncatedLabel(label: string): { display: string; isTruncated: boolean } {
+    const isTruncated =
+      this.maxLabelLength != null && label.length > this.maxLabelLength;
+    const display = isTruncated
       ? label.slice(0, this.maxLabelLength) + '...'
       : label;
+    return { display, isTruncated };
+  }
+
+  getTooltipLabel(label: string): string | null {
+    const truncatedLabel = this.getTruncatedLabel(label);
+    return truncatedLabel.isTruncated ? label : null;
   }
 }
