@@ -9,12 +9,13 @@
           [attr.data-tooltip-text]="getTooltipLabel(tab.label)"
         >
           <button
-            class="overflow-hidden text-ellipsis whitespace-nowrap"
             [ngClass]="{
               'bg-[#032A58] text-white border-2 border-[#106ACC]':
-                isActive(index) && !tab.isDisabled,
-              'bg-[#F7F7F7] text-[#060505] border border-[#BFBFBF]':
-                !isActive(index),
+                isActive(index),
+              'bg-[#F7F7F7]  !border border-[#BFBFBF]':
+                !isActive(index) && !isDarkMode,
+              'bg-[#272727] text-[#FFF] border border-[#4A4A4A]':
+                !isActive(index) && isDarkMode,
               'cursor-not-allowed': tab.isDisabled
             }"
             [disabled]="tab.isDisabled"

@@ -10,6 +10,7 @@ interface TabsComponentProps {
   tabs: Tab[];
   selectedTabIndex?: number;
   maxLabelLength?: number;
+  isDarkMode?: boolean;
 }
 
 @Component({
@@ -23,6 +24,7 @@ export class TabsComponent implements OnInit, TabsComponentProps {
   @Input() tabs: Tab[] = [];
   @Input() selectedTabIndex?: number;
   @Input() maxLabelLength?: number;
+  @Input() isDarkMode?: boolean;
   @Output() selectedTabIndexChange = new EventEmitter<number>();
 
   ngOnInit() {

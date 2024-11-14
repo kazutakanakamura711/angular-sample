@@ -12,9 +12,10 @@ import { TabContent0Component } from './tab-content0/tab-content0.component';
 export class TabsFeatComponent {
   tabs: Tab[] = [
     { label: 'タブ0' },
-    { label: 'タブ1タブ1タブ1タブ1タブ1', isDisabled: true },
+    { label: 'タブ1タブ1タブ1タブ1タブ1' },
     {
       label: 'タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2',
+      isDisabled: true,
     },
   ];
 
@@ -23,4 +24,7 @@ export class TabsFeatComponent {
 
   // 3点リーダーの文字数制限
   maxTabLabelLength = 10;
+
+  // isDarkMode = true;
+  isDarkMode = false;
 }
