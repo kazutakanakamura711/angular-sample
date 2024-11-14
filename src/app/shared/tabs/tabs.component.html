@@ -16,7 +16,7 @@
                 !isActive(index) && !isDarkMode,
               'bg-[#272727] text-[#FFF] border border-[#4A4A4A]':
                 !isActive(index) && isDarkMode,
-              'cursor-not-allowed': tab.isDisabled
+              '!cursor-not-allowed': tab.isDisabled
             }"
             [disabled]="tab.isDisabled"
             [style.padding-bottom]="isActive(index) ? '8px' : ''"
