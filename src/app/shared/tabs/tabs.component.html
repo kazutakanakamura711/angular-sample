@@ -4,7 +4,9 @@
       @for (tab of tabs; track $index; let index = $index) {
         <li
           class="dn-i-tooltip"
-          [class.opacity-40]="tab.isDisabled"
+          [ngClass]="{
+            'text-[#0F0F0F66]': tab.isDisabled
+          }"
           (click)="selectTab(index)"
           [attr.data-tooltip-text]="getTooltipLabel(tab.label)"
         >
