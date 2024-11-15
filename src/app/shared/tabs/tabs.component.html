@@ -1,6 +1,6 @@
 <div class="mx-auto">
   <div class="border-b border-[#106ACC]">
-    <ul class="flex list-none p-0 m-0">
+    <ul class="flex list-none p-0 m-0 overflow-x-auto pt-[1042px] mt-[-1042px]">
       @for (tab of tabs; track $index; let index = $index) {
         <li
           class="dn-i-tooltip"
@@ -21,7 +21,7 @@
             [disabled]="tab.isDisabled"
             [style.padding-bottom]="isActive(index) ? '8px' : ''"
             [style.margin-bottom]="isActive(index) ? '-1px' : ''"
-            class="cursor-pointer inline-block px-8 py-2 border-b-0 transition-colors ml-1.5 rounded-t-lg hover:opacity-70"
+            class="whitespace-nowrap cursor-pointer inline-block px-8 py-2 border-b-0 transition-colors ml-1.5 rounded-t-lg hover:opacity-70"
           >
             {{ getTruncatedLabel(tab.label).display }}
           </button>
