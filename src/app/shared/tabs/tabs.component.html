@@ -1,34 +1,32 @@
 <div class="mx-auto">
-  <div class="border-b border-[#106ACC]">
-    <ul class="flex list-none p-0 m-0 overflow-x-auto pt-[1042px] mt-[-1042px]">
-      @for (tab of tabs; track $index; let index = $index) {
-        <li
-          class="dn-i-tooltip"
+  <ul class="flex list-none p-0 m-0 border-b border-[#106ACC] min-w-[1080px]">
+    @for (tab of tabs; track $index; let index = $index) {
+      <li
+        class="dn-i-tooltip"
+        [ngClass]="{
+          'text-[#0F0F0F66]': tab.isDisabled
+        }"
+        (click)="selectTab(index)"
+        [attr.data-tooltip-text]="getTooltipLabel(tab.label)"
+      >
+        <button
           [ngClass]="{
-            'text-[#0F0F0F66]': tab.isDisabled
+            'bg-[#032A58] text-white border-2 border-[#106ACC]':
+              isActive(index),
+            'bg-[#F7F7F7]  !border border-[#BFBFBF]':
+              !isActive(index) && !isDarkMode,
+            'bg-[#272727] text-[#FFF] border border-[#4A4A4A]':
+              !isActive(index) && isDarkMode,
+            '!cursor-not-allowed': tab.isDisabled
           }"
-          (click)="selectTab(index)"
-          [attr.data-tooltip-text]="getTooltipLabel(tab.label)"
+          [disabled]="tab.isDisabled"
+          [style.padding-bottom]="isActive(index) ? '8px' : ''"
+          [style.margin-bottom]="isActive(index) ? '-1px' : ''"
+          class="whitespace-nowrap cursor-pointer inline-block px-8 py-2 border-b-0 transition-colors ml-1.5 rounded-t-lg hover:opacity-70"
         >
-          <button
-            [ngClass]="{
-              'bg-[#032A58] text-white border-2 border-[#106ACC]':
-                isActive(index),
-              'bg-[#F7F7F7]  !border border-[#BFBFBF]':
-                !isActive(index) && !isDarkMode,
-              'bg-[#272727] text-[#FFF] border border-[#4A4A4A]':
-                !isActive(index) && isDarkMode,
-              '!cursor-not-allowed': tab.isDisabled
-            }"
-            [disabled]="tab.isDisabled"
-            [style.padding-bottom]="isActive(index) ? '8px' : ''"
-            [style.margin-bottom]="isActive(index) ? '-1px' : ''"
-            class="whitespace-nowrap cursor-pointer inline-block px-8 py-2 border-b-0 transition-colors ml-1.5 rounded-t-lg hover:opacity-70"
-          >
-            {{ getTruncatedLabel(tab.label).display }}
-          </button>
-        </li>
-      }
-    </ul>
-  </div>
+          {{ getTruncatedLabel(tab.label).display }}
+        </button>
+      </li>
+    }
+  </ul>
 </div>
