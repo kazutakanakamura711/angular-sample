@@ -26,6 +26,6 @@ export class TabsFeatComponent {
   // 3点リーダーの文字数制限
   maxTabLabelLength = 10;
 
-  isDarkMode = true;
-  // isDarkMode = false;
+  // isDarkMode = true;
+  isDarkMode = false;
 }
