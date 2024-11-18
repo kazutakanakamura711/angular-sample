@@ -16,6 +16,10 @@ export class TabsFeatComponent {
     {
       label:
         'タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2タブ2',
+    },
+    {
+      label:
+        'タブ3タブ3タブ3タブ3タブ3タブ3タブ3タブ3タブ3タブ3タブ3タブ3タブ3タブ3タブ3タブ3タブ3タブ3',
       isDisabled: true,
     },
   ];
@@ -24,7 +28,7 @@ export class TabsFeatComponent {
   selectedTabIndex = 0;
 
   // 3点リーダーの文字数制限
-  maxTabLabelLength = 10;
+  maxLabelLength = 10;
 
   // isDarkMode = true;
   isDarkMode = false;

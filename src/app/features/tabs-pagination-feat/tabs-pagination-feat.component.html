@@ -1,1 +1,41 @@
-<tabs-pagination />
+<div class="overflow-x-auto">
+  <p>選択されたタブを表示するサンプル</p>
+  <p>選択されたタブを表示するサンプル</p>
+  <p>選択されたタブを表示するサンプル</p>
+  <p>選択されたタブを表示するサンプル</p>
+  <tabs-pagination
+    [tabs]="tabs"
+    [selectedTabIndex]="selectedTabIndex"
+    [maxLabelLength]="maxLabelLength"
+    [isDarkMode]="isDarkMode"
+    (selectedTabIndexChange)="selectedTabIndex = $event"
+  />
+
+  <p>選択されたタブを表示するサンプル</p>
+
+  @if (selectedTabIndex === 0) {
+    <div>
+      <app-tab-content0 [text]="tabs[selectedTabIndex].label || ''" />
+    </div>
+  }
+  @if (selectedTabIndex === 1) {
+    <div>
+      <app-tab-content0 [text]="tabs[selectedTabIndex].label || ''" />
+    </div>
+  }
+  @if (selectedTabIndex === 2) {
+    <div>
+      <app-tab-content0 [text]="tabs[selectedTabIndex].label || ''" />
+    </div>
+  }
+  @if (selectedTabIndex === 3) {
+    <div>
+      <app-tab-content0 [text]="tabs[selectedTabIndex].label || ''" />
+    </div>
+  }
+  @if (selectedTabIndex === 4) {
+    <div>
+      <app-tab-content0 [text]="tabs[selectedTabIndex].label || ''" />
+    </div>
+  }
+</div>

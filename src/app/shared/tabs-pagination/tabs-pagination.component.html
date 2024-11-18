@@ -1,1 +1,79 @@
-<p>tabs-pagination works!!!</p>
+<div class="mx-auto flex items-start gap-1.5">
+  <!-- 固定ボタン -->
+  <div class="flex gap-1.5">
+    <!-- Go to First Tab -->
+    <button
+      class="px-2 py-[7px] bg-dn-layer-2 border border-dn-outline-border rounded-l whitespace-nowrap"
+      [ngClass]="{ 'opacity-40': selectedTabIndex === 0 }"
+      [disabled]="selectedTabIndex === 0"
+      (click)="goToFirst()"
+    >
+      |&lt;
+    </button>
+
+    <!-- Go to Previous Tab -->
+    <button
+      class="px-2 py-[7px] bg-dn-layer-2 border border-dn-outline-border rounded-l"
+      [ngClass]="{ 'opacity-40': selectedTabIndex === 0 }"
+      [disabled]="selectedTabIndex === 0"
+      (click)="goToPrevious()"
+    >
+      &lt;
+    </button>
+  </div>
+
+  <!-- スクロール可能なタブ -->
+  <div class="flex-1 overflow-x-auto">
+    <ul
+      class="flex list-none px-1.5 m-0 border-b border-dn-primary-1 min-w-fit gap-1.5 tab-list"
+    >
+      @for (tab of tabs; track $index; let index = $index) {
+        <li
+          class="tab-item dn-i-tooltip flex-shrink-0"
+          [ngClass]="{
+            'text-[#0F0F0F66]': tab.isDisabled
+          }"
+          (click)="selectTab(index)"
+          [attr.data-tooltip-text]="getTooltipLabel(tab.label)"
+        >
+          <button
+            [ngClass]="{
+              'bg-dn-primary-3 text-white !border-2 !border-dn-primary-1 pb-2 mb-[-1px]':
+                isActive(index),
+              'bg-dn-layer-2 ': !isActive(index) && !isDarkMode,
+              'bg-dn-layer-2-dark !text-white ': !isActive(index) && isDarkMode,
+              '!cursor-not-allowed': tab.isDisabled
+            }"
+            [disabled]="tab.isDisabled"
+            class="whitespace-nowrap cursor-pointer inline-block px-8 py-2 !border border-dn-outline-border !border-b-0 transition-colors rounded-t-lg hover:opacity-70"
+          >
+            {{ getTruncatedLabel(tab.label).display }}
+          </button>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <!-- 固定ボタン -->
+  <div class="flex gap-1.5">
+    <!-- Go to Next Tab -->
+    <button
+      class="px-2 py-[7px] bg-dn-layer-2 border border-dn-outline-border rounded-r"
+      [ngClass]="{ 'opacity-40': selectedTabIndex === tabs.length - 1 }"
+      [disabled]="selectedTabIndex === tabs.length - 1"
+      (click)="goToNext()"
+    >
+      &gt;
+    </button>
+
+    <!-- Go to Last Tab -->
+    <button
+      class="px-2 py-[7px] bg-dn-layer-2 border border-dn-outline-border rounded-r whitespace-nowrap"
+      [ngClass]="{ 'opacity-40': selectedTabIndex === tabs.length - 1 }"
+      [disabled]="selectedTabIndex === tabs.length - 1"
+      (click)="goToLast()"
+    >
+      &gt;|
+    </button>
+  </div>
+</div>
