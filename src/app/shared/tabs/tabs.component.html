@@ -13,18 +13,14 @@
       >
         <button
           [ngClass]="{
-            'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
+            'bg-dn-primary-3 text-white !border-2 !border-dn-primary-1 pb-2 mb-[-1px]':
               isActive(index),
-            'bg-dn-layer-2 border border-dn-outline-border':
-              !isActive(index) && !isDarkMode,
-            'bg-dn-layer-2-dark !text-white !border border-dn-outline-border':
-              !isActive(index) && isDarkMode,
+            'bg-dn-layer-2 ': !isActive(index) && !isDarkMode,
+            'bg-dn-layer-2-dark !text-white ': !isActive(index) && isDarkMode,
             '!cursor-not-allowed': tab.isDisabled
           }"
           [disabled]="tab.isDisabled"
-          [style.padding-bottom]="isActive(index) ? '8px' : ''"
-          [style.margin-bottom]="isActive(index) ? '-1px' : ''"
-          class="whitespace-nowrap cursor-pointer inline-block px-8 py-2 !border-b-0 transition-colors ml-1.5 rounded-t-lg hover:opacity-70"
+          class="whitespace-nowrap cursor-pointer inline-block px-8 py-2 !border border-dn-outline-border !border-b-0 transition-colors ml-1.5 rounded-t-lg hover:opacity-70"
         >
           {{ getTruncatedLabel(tab.label).display }}
         </button>
