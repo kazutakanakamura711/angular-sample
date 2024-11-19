@@ -3,8 +3,13 @@
   <div class="flex gap-1.5">
     <!-- Go to First Tab -->
     <button
-      class="px-2 py-[7px] bg-dn-layer-2 border border-dn-outline-border rounded-l-lg whitespace-nowrap"
-      [ngClass]="{ 'opacity-40': selectedTabIndex === 0 }"
+      class="px-2 py-[7px] border border-dn-outline-border rounded-l-lg whitespace-nowrap"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkMode,
+        'bg-dn-layer-2-dark': isDarkMode,
+        'text-[#7F7F7F]': isDarkMode,
+        'opacity-40': selectedTabIndex === 0
+      }"
       [disabled]="selectedTabIndex === 0"
       (click)="goToFirst()"
     >
@@ -13,8 +18,13 @@
 
     <!-- Go to Previous Tab -->
     <button
-      class="px-2 py-[7px] bg-dn-layer-2 border border-dn-outline-border rounded-l-lg"
-      [ngClass]="{ 'opacity-40': selectedTabIndex === 0 }"
+      class="px-2 py-[7px] border border-dn-outline-border rounded-l-lg"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkMode,
+        'bg-dn-layer-2-dark': isDarkMode,
+        'text-[#7F7F7F]': isDarkMode,
+        'opacity-40': selectedTabIndex === 0
+      }"
       [disabled]="selectedTabIndex === 0"
       (click)="goToPrevious()"
     >
@@ -28,7 +38,7 @@
     >
       @for (tab of tabs; track $index; let index = $index) {
         <li
-          class="tab-item dn-i-tooltip flex-shrink-0"
+          class="js-tab-item dn-i-tooltip flex-shrink-0"
           [ngClass]="{
             'text-[#0F0F0F66]': tab.isDisabled
           }"
@@ -57,8 +67,13 @@
   <div class="flex gap-1.5">
     <!-- Go to Next Tab -->
     <button
-      class="px-2 py-[7px] bg-dn-layer-2 border border-dn-outline-border rounded-r-lg"
-      [ngClass]="{ 'opacity-40': selectedTabIndex === tabs.length - 1 }"
+      class="px-2 py-[7px] border border-dn-outline-border rounded-r-lg"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkMode,
+        'bg-dn-layer-2-dark': isDarkMode,
+        'text-[#7F7F7F]': isDarkMode,
+        'opacity-40': selectedTabIndex === tabs.length - 1
+      }"
       [disabled]="selectedTabIndex === tabs.length - 1"
       (click)="goToNext()"
     >
@@ -67,8 +82,13 @@
 
     <!-- Go to Last Tab -->
     <button
-      class="px-2 py-[7px] bg-dn-layer-2 border border-dn-outline-border rounded-r-lg whitespace-nowrap"
-      [ngClass]="{ 'opacity-40': selectedTabIndex === tabs.length - 1 }"
+      class="px-2 py-[7px] border border-dn-outline-border rounded-r-lg whitespace-nowrap"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkMode,
+        'bg-dn-layer-2-dark': isDarkMode,
+        'text-[#7F7F7F]': isDarkMode,
+        'opacity-40': selectedTabIndex === tabs.length - 1
+      }"
       [disabled]="selectedTabIndex === tabs.length - 1"
       (click)="goToLast()"
     >
