@@ -106,8 +106,8 @@ export class TabsPaginationComponent
 
   // 選択したタブに合わせてスクロールし追従する関数
   scrollToTab(index: number) {
-    const tabListElement = document.querySelector('.tab-list');
-    const tabElement = document.querySelectorAll('.tab-item')[index];
+    const tabListElement = document.querySelector('.js-tab-list');
+    const tabElement = document.querySelectorAll('.js-tab-item')[index];
 
     if (!(tabListElement && tabElement)) return;
     tabElement.scrollIntoView({
