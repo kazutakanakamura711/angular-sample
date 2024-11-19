@@ -21,11 +21,18 @@
     opacity: 1;
     visibility: visible;
     transition: opacity 0.3s;
-    max-width: 480px; // 横幅の最大値
-    width: max-content; // 内容に応じた幅
+
+    // 親要素（タブ）の幅に合わせる
+    width: 100%; // 親要素の幅を使用
+    max-width: none; // 最大幅の制限を解除
     white-space: normal; // 折り返しを許可
     overflow-wrap: break-word; // 長い単語を折り返し
-    display: inline-block; // 横幅の自動調整
+
+    // max-width: 480px; // 横幅の最大値
+    // width: max-content; // 内容に応じた幅
+    // white-space: normal; // 折り返しを許可
+    // overflow-wrap: break-word; // 長い単語を折り返し
+    // display: inline-block; // 横幅の自動調整
   }
 
   // ツールチップが非表示のデフォルトスタイル

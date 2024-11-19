@@ -14,6 +14,10 @@ import { TabContent0Component } from '../tabs-feat/tab-content0/tab-content0.com
 })
 export class TabsPaginationFeatComponent {
   tabs: Tab[] = [
+    {
+      label:
+        'テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト',
+    },
     { label: 'トップ' },
     { label: '準速' },
     // { label: '社会テストテストテストテスト', isDisabled: true },
@@ -23,7 +27,6 @@ export class TabsPaginationFeatComponent {
     { label: 'ビジネス' },
     { label: '国際' },
     { label: 'スポーツ' },
-    // { label: 'テストテストテストテスト' },
   ];
 
   selectedTabIndex = 0; // 初期表示のタブ
