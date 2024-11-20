@@ -1,21 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-
-export type FontSize = 'small' | 'default' | 'large';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store'; // Storeをインポート
+import { Observable } from 'rxjs'; // 状態を監視
+import {
+  FontSize,
+  FontSizeState,
+} from '../../store/font-size.reducer/font-size.reducer';
+import { selectFontSizeType } from '../../store/font-size.reducer/font-size.selectors';
+import { updateFontSize } from '../../store/font-size.reducer/font-size.actions';
 
 @Component({
   selector: 'font-size-changer',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './font-size-changer.component.html',
-  styleUrl: './font-size-changer.component.scss',
+  styleUrls: ['./font-size-changer.component.scss'],
 })
 export class FontSizeChangerComponent {
-  @Input() fontSizeType: FontSize = 'default';
-  @Output() fontSizeChange = new EventEmitter<FontSize>(); // FontSize型を明示
+  fontSizeType$: Observable<FontSize>; // 状態を監視するObservable
 
-  // フォントサイズを選択する
-  selectFontSize(size: FontSize): void {
-    this.fontSizeChange.emit(size); // FontSize型を親に送信
+  constructor(private store: Store<FontSizeState>) {
+    // セレクターを使って状態を取得
+    this.fontSizeType$ = this.store.select(selectFontSizeType);
+  }
+
+  // フォントサイズを変更
+  changeFontSize(size: FontSize): void {
+    this.store.dispatch(updateFontSize({ fontSize: size })); // 状態を更新
   }
 }

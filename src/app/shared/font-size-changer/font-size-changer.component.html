@@ -3,10 +3,10 @@
   <button
     class="w-14 h-7 text-center bg-dn-layer-2 rounded-md text-xs"
     [ngClass]="{
-      'bg-dn-primary-3 text-white': fontSizeType === 'small',
-      'border-2 border-dn-primary-1': fontSizeType === 'small'
+      'bg-dn-primary-3 text-white': (fontSizeType$ | async) === 'small',
+      'border-2 border-dn-primary-1': (fontSizeType$ | async) === 'small'
     }"
-    (click)="selectFontSize('small')"
+    (click)="changeFontSize('small')"
   >
     小
   </button>
@@ -15,10 +15,10 @@
   <button
     class="w-14 h-7 text-center bg-dn-layer-2 rounded-md"
     [ngClass]="{
-      'bg-dn-primary-3 text-white': fontSizeType === 'default',
-      'border-2 border-dn-primary-1': fontSizeType === 'default'
+      'bg-dn-primary-3 text-white': (fontSizeType$ | async) === 'default',
+      'border-2 border-dn-primary-1': (fontSizeType$ | async) === 'default'
     }"
-    (click)="selectFontSize('default')"
+    (click)="changeFontSize('default')"
   >
     推奨
   </button>
@@ -27,10 +27,10 @@
   <button
     class="w-14 h-7 text-center bg-dn-layer-2 rounded-md"
     [ngClass]="{
-      'bg-dn-primary-3 text-white': fontSizeType === 'large',
-      'border-2 border-dn-primary-1': fontSizeType === 'large'
+      'bg-dn-primary-3 text-white': (fontSizeType$ | async) === 'large',
+      'border-2 border-dn-primary-1': (fontSizeType$ | async) === 'large'
     }"
-    (click)="selectFontSize('large')"
+    (click)="changeFontSize('large')"
   >
     大
   </button>
