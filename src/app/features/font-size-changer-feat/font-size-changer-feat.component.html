@@ -1,0 +1,23 @@
+<div class="flex flex-col items-start gap-2">
+  <!-- DummyText -->
+  <p>DummyTextDummyTextDummyTextDummyTextTextDummyTextTextDummyText</p>
+  <p>DummyTextDummyTextDummyTextDummyTextTextDummyTextTextDummyText</p>
+  <p>DummyTextDummyTextDummyTextDummyTextTextDummyTextTextDummyText</p>
+  <p>DummyTextDummyTextDummyTextDummyTextTextDummyTextTextDummyText</p>
+  <p>DummyTextDummyTextDummyTextDummyTextTextDummyTextTextDummyText</p>
+
+  <!-- font-size-changerを表示するボタン -->
+  <button
+    (click)="toggleFontSizeChanger()"
+    class="relative px-4 py-2 bg-blue-500 text-white rounded shadow-md hover:bg-blue-600"
+  >
+    変換
+    @if (isFontSizeChangerVisible) {
+      <font-size-changer
+        class="absolute bottom-[110%] left-0 bg-white shadow-lg rounded p-1.5 border border-gray-300"
+        [fontSizeType]="fontSizeType"
+        (fontSizeChange)="changeFontSize($event)"
+      />
+    }
+  </button>
+</div>

@@ -1,0 +1,37 @@
+<div class="flex flex-col gap-1 text-black">
+  <!-- 小ボタン -->
+  <button
+    class="w-14 h-7 text-center bg-dn-layer-2 rounded-md text-xs"
+    [ngClass]="{
+      'bg-dn-primary-3 text-white': fontSizeType === 'small',
+      'border-2 border-dn-primary-1': fontSizeType === 'small'
+    }"
+    (click)="selectFontSize('small')"
+  >
+    小
+  </button>
+
+  <!-- 推奨ボタン -->
+  <button
+    class="w-14 h-7 text-center bg-dn-layer-2 rounded-md"
+    [ngClass]="{
+      'bg-dn-primary-3 text-white': fontSizeType === 'default',
+      'border-2 border-dn-primary-1': fontSizeType === 'default'
+    }"
+    (click)="selectFontSize('default')"
+  >
+    推奨
+  </button>
+
+  <!-- 大ボタン -->
+  <button
+    class="w-14 h-7 text-center bg-dn-layer-2 rounded-md"
+    [ngClass]="{
+      'bg-dn-primary-3 text-white': fontSizeType === 'large',
+      'border-2 border-dn-primary-1': fontSizeType === 'large'
+    }"
+    (click)="selectFontSize('large')"
+  >
+    大
+  </button>
+</div>
