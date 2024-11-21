@@ -1,12 +1,18 @@
 <div
-  class="absolute bottom-[110%] left-0 bg-white shadow-lg rounded p-1.5 border border-gray-300 flex flex-col gap-1 text-black"
+  class="absolute bottom-[110%] left-0 rounded p-1.5 border flex flex-col gap-1"
+  [ngClass]="{
+    'bg-dn-layer-3 shadow-lg border-gray-300 text-black': !isDarkTheme,
+    'bg-dn-layer-3-dark shadow-lg border-gray-700 text-white': isDarkTheme
+  }"
 >
   <!-- 小ボタン -->
   <button
-    class="w-14 h-7 text-center bg-dn-layer-2 rounded-md text-xs"
+    class="w-14 h-7 text-center rounded-md text-xs"
     [ngClass]="{
-      'bg-dn-primary-3 text-white': (fontSizeType$ | async) === 'small',
-      'border-2 border-dn-primary-1': (fontSizeType$ | async) === 'small'
+      'bg-dn-layer-2': !isDarkTheme,
+      'bg-dn-layer-2-dark text-white': isDarkTheme,
+      'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
+        (fontSizeType$ | async) === 'small'
     }"
     (click)="changeFontSize('small')"
   >
@@ -15,10 +21,12 @@
 
   <!-- 推奨ボタン -->
   <button
-    class="w-14 h-7 text-center bg-dn-layer-2 rounded-md"
+    class="w-14 h-7 text-center rounded-md"
     [ngClass]="{
-      'bg-dn-primary-3 text-white': (fontSizeType$ | async) === 'default',
-      'border-2 border-dn-primary-1': (fontSizeType$ | async) === 'default'
+      'bg-dn-layer-2': !isDarkTheme,
+      'bg-dn-layer-2-dark text-white': isDarkTheme,
+      'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
+        (fontSizeType$ | async) === 'default'
     }"
     (click)="changeFontSize('default')"
   >
@@ -27,10 +35,12 @@
 
   <!-- 大ボタン -->
   <button
-    class="w-14 h-7 text-center bg-dn-layer-2 rounded-md"
+    class="w-14 h-7 text-center rounded-md"
     [ngClass]="{
-      'bg-dn-primary-3 text-white': (fontSizeType$ | async) === 'large',
-      'border-2 border-dn-primary-1': (fontSizeType$ | async) === 'large'
+      'bg-dn-layer-2': !isDarkTheme,
+      'bg-dn-layer-2-dark text-white': isDarkTheme,
+      'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
+        (fontSizeType$ | async) === 'large'
     }"
     (click)="changeFontSize('large')"
   >
