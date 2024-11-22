@@ -1,0 +1,39 @@
+<app-title [title]="title" [editingUsers]="editingUsers">
+  <!-- 編集中のユーザーリストをスロットに挿入 -->
+  <div editing-users class="flex items-center gap-10">
+    @if (editingUsers.length > 0) {
+      <p class="font-bold">同時編集中</p>
+    }
+    <div class="flex items-center gap-6">
+      @for (user of editingUsers; track $index; let index = $index) {
+        @if (index < 3) {
+          <div
+            class="px-4 py-2 text-white text-xs rounded-xl"
+            [ngClass]="{
+              'bg-[#E5ACAC]': index === 0,
+              'bg-[#9BD6BD]': index === 1,
+              'bg-[#93BED5]': index === 2
+            }"
+          >
+            {{ user }}
+          </div>
+        }
+      }
+      @if (editingUsers.length > 3) {
+        <div>...</div>
+      }
+    </div>
+  </div>
+
+  <!-- フォント切り替えボタンをスロットに挿入 -->
+  <button
+    font-size-button
+    (click)="toggleFontSizeChanger()"
+    class="relative px-4 py-2 bg-blue-500 text-white rounded shadow-md hover:bg-blue-600"
+  >
+    変更
+    @if (isFontSizeChangerVisible) {
+      <font-size-changer [isDarkTheme]="isDarkTheme"></font-size-changer>
+    }
+  </button>
+</app-title>

@@ -1,0 +1,20 @@
+<div
+  class="w-full flex justify-between items-center text-white px-6 py-4"
+  [ngClass]="{
+    'bg-[#171717]': editingUsers.length === 0,
+    'bg-[#D86503]': editingUsers.length > 0
+  }"
+>
+  <!-- タイトル -->
+  <h1 class="font-bold text-xl">{{ title }}</h1>
+
+  <div class="flex items-center gap-10">
+    <!-- 編集中のユーザーリスト部分 -->
+    @if (editingUsers.length > 0) {
+      <ng-content select="[editing-users]" />
+    }
+
+    <!-- フォント切り替えボタン部分 -->
+    <ng-content select="[font-size-button]" />
+  </div>
+</div>
