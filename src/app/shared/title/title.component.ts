@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { EditingUser } from '../concurrent-edit/concurrent-edit.component';
 
 @Component({
   selector: 'app-title',
@@ -10,5 +11,5 @@ import { Component, Input } from '@angular/core';
 })
 export class TitleComponent {
   @Input() title: string = '';
-  @Input() editingUsers: string[] = [];
+  @Input() editingUsers: EditingUser[] = [];
 }
