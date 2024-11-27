@@ -11,7 +11,7 @@
   <div class="flex items-center gap-10">
     <!-- 編集中のユーザーリスト部分 -->
     @if (editingUsers.length > 0) {
-      <ng-content select="[editing-users]" />
+      <concurrent-edit [editingUsers]="editingUsers" />
     }
 
     <!-- フォント切り替えボタン部分 -->
