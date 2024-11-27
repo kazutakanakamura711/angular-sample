@@ -7,9 +7,6 @@
   &[data-tooltip-text]:hover::after {
     content: attr(data-tooltip-text); // 完全なラベルを表示
     position: absolute;
-    bottom: 100%; // ホバーした要素の上に表示
-    left: 50%;
-    transform: translateX(-50%);
     background-color: #ffffff;
     color: #000000;
     font-size: 16px;
@@ -25,14 +22,8 @@
     // 親要素（タブ）の幅に合わせる
     width: 100%; // 親要素の幅を使用
     max-width: none; // 最大幅の制限を解除
-    white-space: normal; // 折り返しを許可
+    white-space: pre-wrap;
     overflow-wrap: break-word; // 長い単語を折り返し
-
-    // max-width: 480px; // 横幅の最大値
-    // width: max-content; // 内容に応じた幅
-    // white-space: normal; // 折り返しを許可
-    // overflow-wrap: break-word; // 長い単語を折り返し
-    // display: inline-block; // 横幅の自動調整
   }
 
   // ツールチップが非表示のデフォルトスタイル
@@ -41,5 +32,31 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    z-index: 1;
+  }
+
+  // ツーチップの横幅をコンテンツに合わせる
+  &--content-width {
+    &[data-tooltip-text]:hover::after {
+      width: max-content;
+    }
+  }
+
+  // 上に表示するスタイル
+  &--top {
+    &[data-tooltip-text]:hover::after {
+      bottom: 100%; // 要素の上に表示
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  // 下に表示するスタイル
+  &--bottom {
+    &[data-tooltip-text]:hover::after {
+      top: 100%; // 要素の下に表示
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }

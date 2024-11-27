@@ -1,0 +1,27 @@
+<div class="flex items-center gap-10">
+  @if (editingUsers.length > 0) {
+    <p class="font-bold">同時編集中</p>
+  }
+  <div class="flex items-center gap-6">
+    @for (user of editingUsers; track $index; let index = $index) {
+      @if (index < 3) {
+        <div
+          class="px-4 py-2 text-white text-xs rounded-xl dn-i-tooltip dn-i-tooltip--top dn-i-tooltip--content-width"
+          [ngClass]="getUserBackgroundColor(index)"
+          [attr.data-tooltip-text]="getTooltipText(user)"
+        >
+          {{ user.userName }}
+        </div>
+      }
+    }
+    @if (editingUsers.length > 3) {
+      <!-- 4人目以降のユーザーをツールチップで表示 -->
+      <div
+        class="px-4 py-2 text-white text-xs rounded-xl dn-i-tooltip dn-i-tooltip--bottom dn-i-tooltip--content-width"
+        [attr.data-tooltip-text]="getRemainingUsersTooltip()"
+      >
+        ...
+      </div>
+    }
+  </div>
+</div>
