@@ -20,7 +20,13 @@ interface AreaCategory {
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  AreaCategoryIdType = AreaCategoryIdType;
+  AreaNameIdType = AreaNameIdType;
+  AreaCategoryIdTypeDisplay = AreaCategoryIdTypeDisplay;
+  AreaNameIdTypeDisplay = AreaNameIdTypeDisplay;
   isMenuVisible = false;
+
+  // TODO:storeから取得するようにする
   department: string = '〇〇〇〇局';
   userName: string = '田中一郎';
   businessRole: string = '責任者';
@@ -28,11 +34,6 @@ export class HeaderComponent {
     typeId: AreaCategoryIdType.Area,
     areaId: AreaNameIdType.Hokkaido,
   };
-
-  AreaCategoryIdType = AreaCategoryIdType;
-  AreaNameIdType = AreaNameIdType;
-  AreaCategoryIdTypeDisplay = AreaCategoryIdTypeDisplay;
-  AreaNameIdTypeDisplay = AreaNameIdTypeDisplay;
 
   // メニュー表示/非表示の切り替え
   toggleMenu(): void {
