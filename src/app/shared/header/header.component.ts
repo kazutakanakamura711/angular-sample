@@ -1,11 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-
-type AreaType = 'All' | 'Area';
+import {
+  AreaCategoryIdType,
+  AreaCategoryIdTypeDisplay,
+  AreaNameIdType,
+  AreaNameIdTypeDisplay,
+} from './types';
 
 interface AreaCategory {
-  type: AreaType;
-  area?: string;
+  typeId: AreaCategoryIdType;
+  areaId?: AreaNameIdType;
 }
 
 @Component({
@@ -21,9 +25,14 @@ export class HeaderComponent {
   userName: string = '田中一郎';
   businessRole: string = '責任者';
   category: AreaCategory = {
-    type: 'Area',
-    area: '北海道',
+    typeId: AreaCategoryIdType.Area,
+    areaId: AreaNameIdType.Hokkaido,
   };
+
+  AreaCategoryIdType = AreaCategoryIdType;
+  AreaNameIdType = AreaNameIdType;
+  AreaCategoryIdTypeDisplay = AreaCategoryIdTypeDisplay;
+  AreaNameIdTypeDisplay = AreaNameIdTypeDisplay;
 
   // メニュー表示/非表示の切り替え
   toggleMenu(): void {

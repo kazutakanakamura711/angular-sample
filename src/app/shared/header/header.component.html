@@ -63,10 +63,13 @@
       <div
         class="flex items-center justify-center bg-dn-primary-2 text-xs w-28 h-5 rounded"
       >
-        @if (category.type === 'All') {
-          <span>全国</span>
+        @if (category.typeId === AreaCategoryIdType.All) {
+          <span>{{ AreaCategoryIdTypeDisplay[category.typeId] }}</span>
         } @else {
-          <span>地域／{{ category.area }}</span>
+          <span>{{ AreaCategoryIdTypeDisplay[AreaCategoryIdType.Area] }}</span>
+        }
+        @if (category.areaId && category.typeId !== AreaCategoryIdType.All) {
+          <span>／{{ AreaNameIdTypeDisplay[category.areaId] }}</span>
         }
       </div>
     </div>
