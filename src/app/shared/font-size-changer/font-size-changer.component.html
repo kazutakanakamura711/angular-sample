@@ -1,49 +1,58 @@
-<div
-  class="absolute bottom-[110%] left-0 rounded p-1.5 border flex flex-col gap-1"
-  [ngClass]="{
-    'bg-dn-layer-3 shadow-lg border-gray-300 text-black': !isDarkTheme,
-    'bg-dn-layer-3-dark shadow-lg border-gray-700 text-white': isDarkTheme
-  }"
+<button
+  (click)="toggleFontSizeChanger()"
+  class="relative px-4 py-2 bg-blue-500 text-white rounded shadow-md hover:bg-[#FFFFFFB3]"
 >
-  <!-- 小ボタン -->
-  <button
-    class="w-14 h-7 text-center rounded-md text-xs"
-    [ngClass]="{
-      'bg-dn-layer-2': !isDarkTheme,
-      'bg-dn-layer-2-dark text-white': isDarkTheme,
-      'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
-        (fontSizeType$ | async) === 'small'
-    }"
-    (click)="changeFontSize('small')"
-  >
-    小
-  </button>
+  変
 
-  <!-- 推奨ボタン -->
-  <button
-    class="w-14 h-7 text-center rounded-md"
-    [ngClass]="{
-      'bg-dn-layer-2': !isDarkTheme,
-      'bg-dn-layer-2-dark text-white': isDarkTheme,
-      'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
-        (fontSizeType$ | async) === 'default'
-    }"
-    (click)="changeFontSize('default')"
-  >
-    推奨
-  </button>
+  @if (isFontSizeChangerVisible) {
+    <div
+      class="absolute bottom-[110%] left-0 rounded p-1.5 border flex flex-col gap-1"
+      [ngClass]="{
+        'bg-dn-layer-3 shadow-lg border-gray-300 text-black': !isDarkTheme,
+        'bg-dn-layer-3-dark shadow-lg border-gray-700 text-white': isDarkTheme
+      }"
+    >
+      <!-- 小ボタン -->
+      <button
+        class="w-14 h-7 text-center rounded-md text-xs"
+        [ngClass]="{
+          'bg-dn-layer-2': !isDarkTheme,
+          'bg-dn-layer-2-dark text-white': isDarkTheme,
+          'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
+            (fontSizeType$ | async) === 'small'
+        }"
+        (click)="changeFontSize('small')"
+      >
+        小
+      </button>
 
-  <!-- 大ボタン -->
-  <button
-    class="w-14 h-7 text-center rounded-md"
-    [ngClass]="{
-      'bg-dn-layer-2': !isDarkTheme,
-      'bg-dn-layer-2-dark text-white': isDarkTheme,
-      'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
-        (fontSizeType$ | async) === 'large'
-    }"
-    (click)="changeFontSize('large')"
-  >
-    大
-  </button>
-</div>
+      <!-- 推奨ボタン -->
+      <button
+        class="w-14 h-7 text-center rounded-md"
+        [ngClass]="{
+          'bg-dn-layer-2': !isDarkTheme,
+          'bg-dn-layer-2-dark text-white': isDarkTheme,
+          'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
+            (fontSizeType$ | async) === 'default'
+        }"
+        (click)="changeFontSize('default')"
+      >
+        推奨
+      </button>
+
+      <!-- 大ボタン -->
+      <button
+        class="w-14 h-7 text-center rounded-md"
+        [ngClass]="{
+          'bg-dn-layer-2': !isDarkTheme,
+          'bg-dn-layer-2-dark text-white': isDarkTheme,
+          'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
+            (fontSizeType$ | async) === 'large'
+        }"
+        (click)="changeFontSize('large')"
+      >
+        大
+      </button>
+    </div>
+  }
+</button>

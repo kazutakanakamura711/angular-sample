@@ -17,6 +17,9 @@ import { updateFontSize } from '../../store/font-size.reducer/font-size.actions'
   styleUrl: './font-size-changer.component.scss',
 })
 export class FontSizeChangerComponent {
+  // FontSizeChangerの表示/非表示を管理
+  isFontSizeChangerVisible = false;
+
   @Input() isDarkTheme?: boolean;
 
   // 状態を監視するObservable
@@ -24,6 +27,11 @@ export class FontSizeChangerComponent {
 
   constructor(private store: Store<FontSizeState>) {
     this.fontSizeType$ = this.store.select(selectFontSizeType);
+  }
+
+  // FontSizeChangerの表示切り替え
+  toggleFontSizeChanger(): void {
+    this.isFontSizeChangerVisible = !this.isFontSizeChangerVisible;
   }
 
   // フォントサイズを変更

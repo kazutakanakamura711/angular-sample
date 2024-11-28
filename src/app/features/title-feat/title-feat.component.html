@@ -1,13 +1,4 @@
 <app-title [title]="title" [editingUsers]="editingUsers">
   <!-- フォント切り替えボタンをfont-size-buttonスロットに挿入 -->
-  <button
-    font-size-button
-    (click)="toggleFontSizeChanger()"
-    class="relative px-4 py-2 bg-blue-500 text-white rounded shadow-md hover:bg-[#FFFFFFB3]"
-  >
-    変更
-    @if (isFontSizeChangerVisible) {
-      <font-size-changer [isDarkTheme]="isDarkTheme" />
-    }
-  </button>
+  <font-size-changer font-size-button [isDarkTheme]="isDarkTheme" />
 </app-title>

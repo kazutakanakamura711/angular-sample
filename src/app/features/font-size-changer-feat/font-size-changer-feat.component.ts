@@ -11,12 +11,4 @@ import { FontSizeChangerComponent } from '../../shared/font-size-changer/font-si
 })
 export class FontSizeChangerFeatComponent {
   isDarkTheme = false;
-
-  // FontSizeChangerの表示/非表示を管理
-  isFontSizeChangerVisible = false;
-
-  // FontSizeChangerの表示切り替え
-  toggleFontSizeChanger(): void {
-    this.isFontSizeChangerVisible = !this.isFontSizeChangerVisible;
-  }
 }

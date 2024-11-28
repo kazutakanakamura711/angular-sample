@@ -6,14 +6,5 @@
   <p>DummyTextDummyTextDummyTextDummyTextTextDummyTextTextDummyText</p>
   <p>DummyTextDummyTextDummyTextDummyTextTextDummyTextTextDummyText</p>
 
-  <!-- font-size-changerを表示するボタン -->
-  <button
-    (click)="toggleFontSizeChanger()"
-    class="relative px-4 py-2 bg-blue-500 text-white rounded shadow-md hover:bg-[#FFFFFFB3]"
-  >
-    変更
-    @if (isFontSizeChangerVisible) {
-      <font-size-changer [isDarkTheme]="isDarkTheme" />
-    }
-  </button>
+  <font-size-changer [isDarkTheme]="isDarkTheme" />
 </div>
