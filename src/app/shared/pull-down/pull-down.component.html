@@ -1,6 +1,6 @@
 <div class="relative">
   <button
-    class="bg-dn-input text-black border border-dn-outline-border rounded p-2 text-left flex items-center justify-between"
+    class="bg-dn-input text-black border border-dn-outline-border rounded p-1.5 text-left flex items-center justify-between"
     [ngClass]="width ? width : 'w-48'"
     (click)="isOpen = !isOpen"
   >
@@ -19,7 +19,7 @@
     >
       @for (item of listItems; track item.id) {
         <li
-          class="px-4 py-2 text-black hover:opacity-70 cursor-pointer"
+          class="px-4 py-1.5 text-black hover:opacity-70 cursor-pointer"
           (click)="selectItem(item)"
         >
           {{ item.label }}

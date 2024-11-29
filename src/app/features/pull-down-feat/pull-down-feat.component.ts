@@ -24,6 +24,8 @@ export class PullDownFeatComponent {
     { id: 'AAATS03', label: 'テスト3画面' },
     { id: 'AAATS04', label: 'テスト4画面' },
     { id: 'AAATS05', label: 'テスト5画面' },
+    { id: 'AAATS06', label: 'テスト6画面' },
+    { id: 'AAATS07', label: 'テスト7画面' },
   ];
 
   // 初期選択オプション
