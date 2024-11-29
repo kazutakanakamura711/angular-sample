@@ -1,0 +1,75 @@
+<div class="flex items-center h-8 relative">
+  <!-- ハンバーガーアイコン -->
+  <button
+    class="h-8 px-3.5 flex items-center justify-center bg-[#ED9F00]"
+    (click)="toggleMenu()"
+    aria-label="メニューを開閉"
+  >
+    <div class="flex flex-col justify-between h-4 w-4">
+      <span class="block h-0.5 w-full bg-white"></span>
+      <span class="block h-0.5 w-full bg-white"></span>
+      <span class="block h-0.5 w-full bg-white"></span>
+    </div>
+  </button>
+
+  <!-- メニューリスト -->
+  @if (isMenuVisible) {
+    <ul
+      class="absolute top-full left-0 mt-2 bg-gray-500 shadow-lg rounded w-60 text-white z-10"
+    >
+      <!-- クローズボタン -->
+      <li class="p-2 hover:opacity-70 border-b border-gray-400">
+        <button
+          class="flex items-center justify-start w-full text-white"
+          (click)="toggleMenu()"
+          aria-label="メニューを閉じる"
+        >
+          <span class="block relative w-4 h-4">
+            <span
+              class="block w-full h-0.5 bg-white rotate-45 absolute top-1/2 left-0 transform -translate-y-1/2"
+            ></span>
+            <span
+              class="block w-full h-0.5 bg-white -rotate-45 absolute top-1/2 left-0 transform -translate-y-1/2"
+            ></span>
+          </span>
+        </button>
+      </li>
+      <!-- メニュー項目 -->
+      <li
+        class="p-2 cursor-pointer hover:opacity-70 border-b border-gray-400"
+        (click)="goToPortal()"
+      >
+        ポータル画面へ
+      </li>
+      <li
+        class="p-2 cursor-pointer hover:opacity-70"
+        (click)="exitingSubsystem()"
+      >
+        サブシステム終了
+      </li>
+    </ul>
+  }
+
+  <!-- ヘッダー内容 -->
+  <div
+    class="flex items-center justify-between w-full py-1.5 px-4 bg-[#313131] text-white"
+  >
+    <p class="text-xs">ヘッダーテキスト</p>
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2">
+        <p class="text-xs">{{ department }}／{{ userName }}</p>
+        <p class="text-sm">（{{ businessRole }}）</p>
+      </div>
+      <div
+        class="flex items-center justify-center bg-dn-primary-2 text-xs w-28 h-5 rounded"
+      >
+        @if (category.areaId && category.typeId === AreaCategoryIdType.Area) {
+          <span>{{ AreaCategoryIdTypeDisplay[category.typeId] }}</span>
+          <span>／{{ AreaNameIdTypeDisplay[category.areaId] }}</span>
+        } @else {
+          <span>{{ AreaCategoryIdTypeDisplay[category.typeId] }}</span>
+        }
+      </div>
+    </div>
+  </div>
+</div>
