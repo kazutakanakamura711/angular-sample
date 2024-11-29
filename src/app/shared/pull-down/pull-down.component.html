@@ -1,6 +1,6 @@
 <div class="relative">
   <button
-    class="bg-[#F2F2F2] text-black border border-dn-outline-border rounded p-2 w-full text-left flex items-center justify-between"
+    class="bg-dn-input text-black border border-dn-outline-border rounded p-2 w-full text-left flex items-center justify-between"
     [ngClass]="width"
     (click)="isOpen = !isOpen"
   >
@@ -8,18 +8,18 @@
 
     <!-- 下向き矢印のアイコン -->
     <span
-      class="inline-block w-2 h-2 border-t-2 border-l-2 border-[#707070] transform rotate-[-135deg]"
+      class="inline-block w-2 h-2 border-t-2 border-l-2 border-dn-line transform rotate-[-135deg]"
     ></span>
   </button>
 
   @if (isOpen) {
     <ul
-      class="absolute w-full bg-white border border-dn-outline-border rounded"
+      class="absolute w-full bg-dn-layer-2 border border-dn-outline-border rounded"
       [ngClass]="width"
     >
       @for (item of listItems; track item.id) {
         <li
-          class="px-4 py-2 text-black hover:bg-[#F2F2F2] cursor-pointer"
+          class="px-4 py-2 text-black hover:opacity-70 cursor-pointer"
           (click)="selectItem(item)"
         >
           {{ item.label }}
