@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class PullDownFeatComponent {
   // セレクトボックスの幅を指定
-  width: string = 'w-48';
+  width: string = 'w-64';
   // マルチセレクトにするかどうか
   isMulch: boolean = false;
 

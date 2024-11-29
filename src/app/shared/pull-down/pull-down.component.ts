@@ -13,8 +13,11 @@ export interface ListItem {
   styleUrl: './pull-down.component.scss',
 })
 export class PullDownComponent {
+  ngOnInit() {
+    console.log('Received width:', this.width); // 正しく受け取っているかを確認
+  }
   // セレクトボックスのwidth
-  @Input() width = '';
+  @Input() width?: string;
   // マルチセレクトにすか
   @Input() isMulch?: boolean;
   // 表示項目

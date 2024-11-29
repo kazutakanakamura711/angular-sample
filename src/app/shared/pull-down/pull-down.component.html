@@ -1,7 +1,7 @@
 <div class="relative">
   <button
-    class="bg-dn-input text-black border border-dn-outline-border rounded p-2 w-full text-left flex items-center justify-between"
-    [ngClass]="width"
+    class="bg-dn-input text-black border border-dn-outline-border rounded p-2 text-left flex items-center justify-between"
+    [ngClass]="width ? width : 'w-48'"
     (click)="isOpen = !isOpen"
   >
     <span>{{ selectedItem?.label || '選択してください' }}</span>
