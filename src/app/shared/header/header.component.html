@@ -63,13 +63,11 @@
       <div
         class="flex items-center justify-center bg-dn-primary-2 text-xs w-28 h-5 rounded"
       >
-        @if (category.typeId === AreaCategoryIdType.All) {
+        @if (category.areaId && category.typeId === AreaCategoryIdType.Area) {
           <span>{{ AreaCategoryIdTypeDisplay[category.typeId] }}</span>
-        } @else {
-          <span>{{ AreaCategoryIdTypeDisplay[AreaCategoryIdType.Area] }}</span>
-        }
-        @if (category.areaId && category.typeId !== AreaCategoryIdType.All) {
           <span>／{{ AreaNameIdTypeDisplay[category.areaId] }}</span>
+        } @else {
+          <span>{{ AreaCategoryIdTypeDisplay[category.typeId] }}</span>
         }
       </div>
     </div>
