@@ -4,7 +4,7 @@
     [ngClass]="width ? width : 'w-48'"
     (click)="isOpen = !isOpen"
   >
-    <span>{{ selectedItem?.label || '選択してください' }}</span>
+    <span>{{ selectedItemsString }}</span>
 
     <!-- 下向き矢印のアイコン -->
     <span
@@ -18,10 +18,14 @@
     >
       @for (item of listItems; track item.id) {
         <li
-          class="px-4 py-1.5 text-black hover:opacity-70 cursor-pointer"
+          class="flex items-center px-4 py-1.5 text-black hover:opacity-70 cursor-pointer"
           (click)="selectItem(item)"
         >
-          {{ item.label }}
+          <!-- チェックボックス -->
+          @if (isMulch) {
+            <input type="checkbox" [checked]="isSelected(item)" class="mr-2" />
+          }
+          <span>{{ item.label }}</span>
         </li>
       }
     </ul>

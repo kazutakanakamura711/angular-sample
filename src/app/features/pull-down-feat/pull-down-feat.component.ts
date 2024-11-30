@@ -16,7 +16,7 @@ export class PullDownFeatComponent {
   // セレクトボックスの幅を指定
   width: string = 'w-64';
   // マルチセレクトにするかどうか
-  isMulch: boolean = false;
+  isMulch: boolean = true;
 
   listItems: ListItem[] = [
     { id: 'AAATS01', label: 'テスト1画面' },
@@ -28,11 +28,11 @@ export class PullDownFeatComponent {
     { id: 'AAATS07', label: 'テスト7画面' },
   ];
 
-  // 初期選択オプション
-  selectedItem: ListItem = this.listItems[0];
+  // 初期選択項目
+  selectedItems: ListItem[] = [this.listItems[0]];
 
-  // アイテムが選択されたときのイベントハンドラ
-  onItemSelected(item: ListItem) {
-    console.log(item);
+  // 項目が選択されたときの処理
+  onItemSelected(items: ListItem[]) {
+    console.log('選択された項目:', items);
   }
 }

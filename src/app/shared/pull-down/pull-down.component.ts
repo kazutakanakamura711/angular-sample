@@ -19,18 +19,58 @@ export class PullDownComponent {
   @Input() isMulch?: boolean;
   // 表示項目
   @Input() listItems: ListItem[] = [];
-  // 初期表示させたい項目
-  @Input() selectedItem?: ListItem;
+  // 初期表示させたい項目（選択したアイテムを配列で管理）
+  @Input() selectedItems: ListItem[] = [];
   // 項目がクリックされたときに親コンポーネントに通知するイベント
-  @Output() itemSelected = new EventEmitter<ListItem>();
+  @Output() itemSelected = new EventEmitter<ListItem[]>();
 
   // ドロップダウンが開いているかどうかを管理
   isOpen = false;
 
+  // 前回のisOpenの状態を保存する変数
+  private prevIsOpen = false;
+
+  // 選択された項目をカンマ区切りで返すgetter
+  get selectedItemsString(): string {
+    return this.selectedItems.length > 0
+      ? this.selectedItems.map((item) => item.label).join(', ')
+      : '選択してください';
+  }
+
   // 項目を選択したときに呼ばれるメソッド
   selectItem(item: ListItem) {
-    this.selectedItem = item;
-    this.itemSelected.emit(item);
-    this.isOpen = false;
+    // シングルセレクトの場合
+    if (!this.isMulch) {
+      this.selectedItems = [item];
+      this.isOpen = false;
+      return;
+    }
+
+    // マルチセレクトの場合
+    const isSelected = this.selectedItems.some((i) => i.id === item.id);
+
+    // すでに選択されているアイテムは削除
+    if (isSelected) {
+      this.selectedItems = this.selectedItems.filter((i) => i.id !== item.id);
+      return;
+    }
+
+    // アイテムが選択されていなければ追加
+    this.selectedItems = [...this.selectedItems, item];
+  }
+
+  // チェックボックスが選択されているかどうかを判定
+  isSelected(item: ListItem): boolean {
+    return this.selectedItems.some(
+      (selectedItem) => selectedItem.id === item.id,
+    );
+  }
+
+  // isOpen の変化を監視
+  ngDoCheck() {
+    if (this.prevIsOpen && !this.isOpen) {
+      this.itemSelected.emit(this.selectedItems);
+    }
+    this.prevIsOpen = this.isOpen;
   }
 }
