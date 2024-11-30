@@ -27,6 +27,9 @@ export class PullDownComponent {
   // ドロップダウンが開いているかどうかを管理
   isOpen = false;
 
+  // デフォルトのメッセージ
+  private defaultPlaceholderMessage = '選択してください';
+
   // 前回のisOpenの状態を保存する変数
   private prevIsOpen = false;
 
@@ -34,7 +37,7 @@ export class PullDownComponent {
   get selectedItemsString(): string {
     return this.selectedItems.length > 0
       ? this.selectedItems.map((item) => item.label).join(', ')
-      : '選択してください';
+      : this.defaultPlaceholderMessage;
   }
 
   // 項目を選択したときに呼ばれるメソッド
