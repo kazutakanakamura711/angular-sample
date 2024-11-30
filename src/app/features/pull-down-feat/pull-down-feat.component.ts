@@ -30,4 +30,9 @@ export class PullDownFeatComponent {
 
   // 初期選択オプション
   selectedItem: ListItem = this.listItems[0];
+
+  // アイテムが選択されたときのイベントハンドラ
+  onItemSelected(item: ListItem) {
+    console.log(item);
+  }
 }
