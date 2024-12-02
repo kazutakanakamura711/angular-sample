@@ -17,6 +17,8 @@ export class PullDownFeatComponent {
   width: string = 'w-64';
   // マルチセレクトにするかどうか
   isMulch: boolean = true;
+  // ダークテーマを使うか
+  isDarkTheme: boolean = false;
 
   listItems: ListItem[] = [
     { id: 'AAATS01', label: 'テスト1画面' },

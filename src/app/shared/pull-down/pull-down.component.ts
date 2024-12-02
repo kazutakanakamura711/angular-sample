@@ -17,6 +17,8 @@ export class PullDownComponent {
   @Input() width?: string;
   // マルチセレクトにするかどうか
   @Input() isMulch?: boolean;
+  // ダークテーマを使うか
+  @Input() isDarkTheme?: boolean;
   // 表示項目
   @Input() listItems: ListItem[] = [];
   // 初期表示させたい項目（選択したアイテムを配列で管理）

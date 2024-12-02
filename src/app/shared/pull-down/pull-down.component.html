@@ -1,7 +1,10 @@
 <div class="relative">
   <button
-    class="bg-dn-input text-black border border-dn-outline-border rounded p-1.5 text-left flex items-center justify-between"
-    [ngClass]="width ? width : 'w-48'"
+    class="border border-dn-outline-border rounded p-1.5 text-left flex items-center justify-between"
+    [ngClass]="[
+      width ? width : 'w-48',
+      isDarkTheme ? 'bg-dn-layer-2-dark text-white' : 'bg-dn-input text-black'
+    ]"
     (click)="isOpen = !isOpen"
   >
     <span>{{ selectedItemsString }}</span>
@@ -14,11 +17,13 @@
 
   @if (isOpen) {
     <ul
-      class="absolute w-full bg-dn-layer-2 border border-dn-outline-border rounded max-h-48 overflow-y-auto"
+      class="absolute w-full border border-dn-outline-border rounded max-h-48 overflow-y-auto"
+      [ngClass]="isDarkTheme ? 'bg-dn-layer-2-dark' : 'bg-dn-layer-2'"
     >
       @for (item of listItems; track item.id) {
         <li
-          class="flex items-center px-4 py-1.5 text-black hover:opacity-70 cursor-pointer"
+          class="flex items-center px-4 py-1.5 hover:opacity-70 cursor-pointer"
+          [ngClass]="isDarkTheme ? 'text-white' : 'text-black'"
           (click)="selectItem(item)"
         >
           <!-- チェックボックス -->
