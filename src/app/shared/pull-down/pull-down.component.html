@@ -24,6 +24,7 @@
         <li
           class="flex items-center px-4 py-1.5 hover:opacity-70 cursor-pointer"
           [ngClass]="isDarkTheme ? 'text-white' : 'text-black'"
+          (click)="selectItem(item)"
         >
           <!-- チェックボックス -->
           @if (isMulch) {
@@ -31,8 +32,8 @@
               [label]="item.label"
               [value]="item.id"
               [name]="'pull-down-checkbox'"
-              [isChecked]="isItemSelected(item)"
-              (isCheckedChange)="selectItem(item, $event)"
+              [isChecked]="isSelected(item)"
+              (isCheckedChange)="selectItem(item)"
               class="w-full"
             />
           } @else {

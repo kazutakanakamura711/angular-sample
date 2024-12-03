@@ -43,22 +43,30 @@ export class PullDownComponent {
       : this.defaultPlaceholderMessage;
   }
 
-  // 項目が選択されたときに呼ばれるメソッド
-  selectItem(item: ListItem, checked: boolean) {
-    // チェックが入った場合はselectedItemsに追加
-    if (checked) {
-      this.selectedItems = [...this.selectedItems, item];
+  // 項目を選択したときに呼ばれるメソッド
+  selectItem(item: ListItem) {
+    // シングルセレクトの場合
+    if (!this.isMulch) {
+      this.selectedItems = [item]; // 選択されたアイテムだけを保持
+      this.isOpen = false; // リストを閉じる
       return;
     }
 
-    // チェックが外れた場合はselectedItemsから削除
-    this.selectedItems = this.selectedItems.filter(
-      (selectedItem) => selectedItem.id !== item.id,
-    );
+    // マルチセレクトの場合
+    const isSelected = this.selectedItems.some((i) => i.id === item.id);
+
+    // すでに選択されているアイテムは削除
+    if (isSelected) {
+      this.selectedItems = this.selectedItems.filter((i) => i.id !== item.id);
+      return;
+    }
+
+    // アイテムが選択されていなければ追加
+    this.selectedItems = [...this.selectedItems, item];
   }
 
-  // アイテムが選択されているかを判定するメソッド
-  isItemSelected(item: ListItem): boolean {
+  // チェックボックスが選択されているかどうかを判定
+  isSelected(item: ListItem): boolean {
     return this.selectedItems.some(
       (selectedItem) => selectedItem.id === item.id,
     );
