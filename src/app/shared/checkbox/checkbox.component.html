@@ -1,4 +1,10 @@
-<label class="flex items-center cursor-pointer gap-2">
+<label
+  class="flex items-center cursor-pointer gap-2 hover:opacity-70"
+  [ngClass]="{
+    'opacity-40 cursor-default': isDisabled,
+    'hover:opacity-70': !isDisabled
+  }"
+>
   <div class="flex items-center">
     <!-- チェックボックス本体 (隠す) -->
     <input
@@ -7,6 +13,7 @@
       (change)="onChangeCheckbox()"
       [value]="value"
       [name]="name"
+      [disabled]="isDisabled"
       class="hidden peer"
     />
     <!-- チェックボックスのカスタム表示 -->

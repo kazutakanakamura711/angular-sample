@@ -1,5 +1,13 @@
-<div class="p-4 bg-white shadow-md rounded-lg max-w-md mx-auto">
-  <h2 class="text-xl font-bold mb-4">Checkbox Sample</h2>
+<div
+  class="p-4 bg-white shadow-md rounded-lg max-w-md mx-auto"
+  [ngClass]="isDarkTheme ? 'bg-black' : 'bg-white'"
+>
+  <h2
+    class="text-xl font-bold mb-4"
+    [ngClass]="isDarkTheme ? 'text-white' : 'text-black'"
+  >
+    Checkbox Sample
+  </h2>
 
   <div class="flex flex-col gap-1">
     <!-- checkboxes 配列をループしてチェックボックスを表示 -->
@@ -9,21 +17,26 @@
         [(isChecked)]="checkbox.isChecked"
         [value]="checkbox.value"
         [name]="checkbox.name"
+        [isDisabled]="checkbox.isDisabled"
+        [isDarkTheme]="isDarkTheme"
         (isCheckedChange)="onChangeCheckbox(index, $event)"
       />
     }
   </div>
 
-  <p class="mt-2">選択された状態:</p>
-
-  <ul class="mt-2">
-    @for (checkbox of checkboxes; track $index; let index = $index) {
-      <li>
-        {{ checkbox.label }}:
-        {{
-          checkbox.isChecked ? 'チェックされています' : 'チェックされていません'
-        }}
-      </li>
-    }
-  </ul>
+  <div [ngClass]="isDarkTheme ? 'text-white' : 'text-black'">
+    <p class="mt-2">選択された状態:</p>
+    <ul class="mt-2">
+      @for (checkbox of checkboxes; track $index; let index = $index) {
+        <li>
+          {{ checkbox.label }}:
+          {{
+            checkbox.isChecked
+              ? 'チェックされています'
+              : 'チェックされていません'
+          }}
+        </li>
+      }
+    </ul>
+  </div>
 </div>

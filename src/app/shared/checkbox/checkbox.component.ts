@@ -17,6 +17,8 @@ export class CheckboxComponent {
   @Input() value: string = '';
   // name 属性
   @Input() name: string = '';
+  // 非活性状態
+  @Input() isDisabled?: boolean;
   // ダークテーマを使うか
   @Input() isDarkTheme?: boolean;
   // チェック状態が変更されたときに通知
@@ -24,6 +26,7 @@ export class CheckboxComponent {
 
   // 親コンポーネントに変更を通知
   onChangeCheckbox() {
+    if (this.isDisabled) return;
     this.isChecked = !this.isChecked;
     this.isCheckedChange.emit(this.isChecked);
   }

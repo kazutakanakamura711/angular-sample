@@ -35,26 +35,11 @@ export class CheckboxFeatComponent {
       label: 'テスト4画面',
       name: 'display',
       isChecked: false,
-    },
-    {
-      value: 'AAATS05',
-      label: 'テスト5画面',
-      name: 'display',
-      isChecked: false,
-    },
-    {
-      value: 'AAATS06',
-      label: 'テスト6画面',
-      name: 'display',
-      isChecked: false,
-    },
-    {
-      value: 'AAATS07',
-      label: 'テスト7画面',
-      name: 'display',
-      isChecked: false,
+      isDisabled: true,
     },
   ];
+
+  isDarkTheme = false;
 
   onChangeCheckbox(index: number, checked: boolean) {
     this.checkboxes[index].isChecked = checked;
