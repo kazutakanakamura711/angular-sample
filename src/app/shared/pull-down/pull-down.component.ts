@@ -53,11 +53,15 @@ export class PullDownComponent {
     }
 
     // マルチセレクトの場合
-    const isSelected = this.selectedItems.some((i) => i.id === item.id);
+    const isItemSelected = this.selectedItems.some(
+      (selectedItem) => selectedItem.id === item.id,
+    );
 
     // すでに選択されているアイテムは削除
-    if (isSelected) {
-      this.selectedItems = this.selectedItems.filter((i) => i.id !== item.id);
+    if (isItemSelected) {
+      this.selectedItems = this.selectedItems.filter(
+        (selectedItem) => selectedItem.id !== item.id,
+      );
       return;
     }
 
