@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CheckboxComponent } from '../checkbox/checkbox.component';
 
 export interface ListItem {
   id: string;
@@ -8,7 +9,7 @@ export interface ListItem {
 @Component({
   selector: 'pull-down',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CheckboxComponent],
   templateUrl: './pull-down.component.html',
   styleUrl: './pull-down.component.scss',
 })
@@ -42,33 +43,22 @@ export class PullDownComponent {
       : this.defaultPlaceholderMessage;
   }
 
-  // 項目を選択したときに呼ばれるメソッド
-  selectItem(item: ListItem) {
-    // シングルセレクトの場合
-    if (!this.isMulch) {
-      this.selectedItems = [item];
-      this.isOpen = false;
-      return;
-    }
-
-    // マルチセレクトの場合
-    const isSelected = this.selectedItems.some((i) => i.id === item.id);
-
-    // すでに選択されているアイテムは削除
-    if (isSelected) {
+  // 項目が選択されたときに呼ばれるメソッド
+  selectItem(item: ListItem, checked: boolean) {
+    if (checked) {
+      // チェックが入った場合はselectedItemsに追加
+      this.selectedItems = [...this.selectedItems, item];
+    } else {
+      // チェックが外れた場合はselectedItemsから削除
       this.selectedItems = this.selectedItems.filter((i) => i.id !== item.id);
-      return;
     }
-
-    // アイテムが選択されていなければ追加
-    this.selectedItems = [...this.selectedItems, item];
+    // アイテム選択後に選択された項目を親コンポーネントに通知
+    this.itemSelected.emit(this.selectedItems);
   }
 
-  // チェックボックスが選択されているかどうかを判定
-  isSelected(item: ListItem): boolean {
-    return this.selectedItems.some(
-      (selectedItem) => selectedItem.id === item.id,
-    );
+  // アイテムが選択されているかを判定するメソッド
+  isItemSelected(item: ListItem): boolean {
+    return this.selectedItems.some((i) => i.id === item.id);
   }
 
   // isOpen の変化を監視

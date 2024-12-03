@@ -1,1 +1,38 @@
-<p>checkbox works!</p>
+<label class="flex items-center cursor-pointer gap-2">
+  <div class="flex items-center">
+    <!-- チェックボックス本体 (隠す) -->
+    <input
+      type="checkbox"
+      [checked]="checked"
+      (change)="toggle()"
+      [value]="value"
+      [name]="name"
+      class="hidden peer"
+    />
+    <!-- チェックボックスのカスタム表示 -->
+    <span
+      class="w-4 h-4 border border-dn-primary-2 rounded flex items-center justify-center peer-checked:bg-dn-primary-1"
+    >
+      <!-- チェックボックスが選択されている時に表示されるチェックマーク -->
+      @if (checked) {
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+      }
+    </span>
+  </div>
+
+  <!-- ラベル -->
+  <span [ngClass]="isDarkTheme ? 'text-white' : 'text-black'">{{ label }}</span>
+</label>
