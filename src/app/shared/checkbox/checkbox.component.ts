@@ -23,7 +23,7 @@ export class CheckboxComponent {
   @Output() isCheckedChange = new EventEmitter<boolean>();
 
   // 親コンポーネントに変更を通知
-  toggle() {
+  onChangeCheckbox() {
     this.isChecked = !this.isChecked;
     this.isCheckedChange.emit(this.isChecked);
   }
