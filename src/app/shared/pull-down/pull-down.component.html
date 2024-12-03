@@ -33,6 +33,7 @@
               [name]="'pull-down-checkbox'"
               [isChecked]="isItemSelected(item)"
               (isCheckedChange)="selectItem(item, $event)"
+              class="w-full"
             />
           } @else {
             <span>{{ item.label }}</span>

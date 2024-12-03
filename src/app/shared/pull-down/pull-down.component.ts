@@ -45,20 +45,23 @@ export class PullDownComponent {
 
   // 項目が選択されたときに呼ばれるメソッド
   selectItem(item: ListItem, checked: boolean) {
+    // チェックが入った場合はselectedItemsに追加
     if (checked) {
-      // チェックが入った場合はselectedItemsに追加
       this.selectedItems = [...this.selectedItems, item];
-    } else {
-      // チェックが外れた場合はselectedItemsから削除
-      this.selectedItems = this.selectedItems.filter((i) => i.id !== item.id);
+      return;
     }
-    // アイテム選択後に選択された項目を親コンポーネントに通知
-    this.itemSelected.emit(this.selectedItems);
+
+    // チェックが外れた場合はselectedItemsから削除
+    this.selectedItems = this.selectedItems.filter(
+      (selectedItem) => selectedItem.id !== item.id,
+    );
   }
 
   // アイテムが選択されているかを判定するメソッド
   isItemSelected(item: ListItem): boolean {
-    return this.selectedItems.some((i) => i.id === item.id);
+    return this.selectedItems.some(
+      (selectedItem) => selectedItem.id === item.id,
+    );
   }
 
   // isOpen の変化を監視
