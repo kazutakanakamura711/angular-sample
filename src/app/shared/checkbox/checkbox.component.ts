@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+export interface Checkbox {
+  value: string;
+  label: string;
+  name: string;
+  isChecked: boolean;
+  isDisabled?: boolean;
+}
+
 @Component({
   selector: 'app-checkbox',
   standalone: true,

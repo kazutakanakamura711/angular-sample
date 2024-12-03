@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { CheckboxComponent } from '../../shared/checkbox/checkbox.component';
+import {
+  Checkbox,
+  CheckboxComponent,
+} from '../../shared/checkbox/checkbox.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CheckboxFeatComponent {
   // チェックボックスの状態を個別に管理するため、配列を使用
-  checkboxes = [
+  checkboxes: Checkbox[] = [
     {
       value: 'AAATS01',
       label: 'テスト1画面',
