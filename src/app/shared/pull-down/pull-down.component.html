@@ -31,8 +31,8 @@
               [label]="item.label"
               [value]="item.id"
               [name]="'pull-down-checkbox'"
-              [checked]="isItemSelected(item)"
-              (checkedChange)="selectItem(item, $event)"
+              [isChecked]="isItemSelected(item)"
+              (isCheckedChange)="selectItem(item, $event)"
             />
           } @else {
             <span>{{ item.label }}</span>

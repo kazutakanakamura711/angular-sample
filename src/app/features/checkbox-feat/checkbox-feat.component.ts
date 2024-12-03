@@ -12,16 +12,51 @@ import { CommonModule } from '@angular/common';
 export class CheckboxFeatComponent {
   // チェックボックスの状態を個別に管理するため、配列を使用
   checkboxes = [
-    { value: 'AAATS01', label: 'テスト1画面', name: 'display', checked: false },
-    { value: 'AAATS02', label: 'テスト2画面', name: 'display', checked: false },
-    { value: 'AAATS03', label: 'テスト3画面', name: 'display', checked: false },
-    { value: 'AAATS04', label: 'テスト4画面', name: 'display', checked: false },
-    { value: 'AAATS05', label: 'テスト5画面', name: 'display', checked: false },
-    { value: 'AAATS06', label: 'テスト6画面', name: 'display', checked: false },
-    { value: 'AAATS07', label: 'テスト7画面', name: 'display', checked: false },
+    {
+      value: 'AAATS01',
+      label: 'テスト1画面',
+      name: 'display',
+      isChecked: false,
+    },
+    {
+      value: 'AAATS02',
+      label: 'テスト2画面',
+      name: 'display',
+      isChecked: false,
+    },
+    {
+      value: 'AAATS03',
+      label: 'テスト3画面',
+      name: 'display',
+      isChecked: false,
+    },
+    {
+      value: 'AAATS04',
+      label: 'テスト4画面',
+      name: 'display',
+      isChecked: false,
+    },
+    {
+      value: 'AAATS05',
+      label: 'テスト5画面',
+      name: 'display',
+      isChecked: false,
+    },
+    {
+      value: 'AAATS06',
+      label: 'テスト6画面',
+      name: 'display',
+      isChecked: false,
+    },
+    {
+      value: 'AAATS07',
+      label: 'テスト7画面',
+      name: 'display',
+      isChecked: false,
+    },
   ];
 
-  onCheckboxChange(index: number, checked: boolean) {
-    this.checkboxes[index].checked = checked;
+  onChangeCheckbox(index: number, checked: boolean) {
+    this.checkboxes[index].isChecked = checked;
   }
 }

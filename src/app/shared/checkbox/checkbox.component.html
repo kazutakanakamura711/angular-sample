@@ -3,7 +3,7 @@
     <!-- チェックボックス本体 (隠す) -->
     <input
       type="checkbox"
-      [checked]="checked"
+      [checked]="isChecked"
       (change)="toggle()"
       [value]="value"
       [name]="name"
@@ -14,7 +14,7 @@
       class="w-4 h-4 border border-dn-primary-2 rounded flex items-center justify-center peer-checked:bg-dn-primary-1"
     >
       <!-- チェックボックスが選択されている時に表示されるチェックマーク -->
-      @if (checked) {
+      @if (isChecked) {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="w-4 h-4 text-white"

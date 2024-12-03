@@ -12,7 +12,7 @@ export class CheckboxComponent {
   // ラベルの入力
   @Input() label: string = '';
   // 初期状態
-  @Input() checked: boolean = false;
+  @Input() isChecked: boolean = false;
   // value 属性
   @Input() value: string = '';
   // name 属性
@@ -20,11 +20,11 @@ export class CheckboxComponent {
   // ダークテーマを使うか
   @Input() isDarkTheme?: boolean;
   // チェック状態が変更されたときに通知
-  @Output() checkedChange = new EventEmitter<boolean>();
+  @Output() isCheckedChange = new EventEmitter<boolean>();
 
   // 親コンポーネントに変更を通知
   toggle() {
-    this.checked = !this.checked;
-    this.checkedChange.emit(this.checked);
+    this.isChecked = !this.isChecked;
+    this.isCheckedChange.emit(this.isChecked);
   }
 }
