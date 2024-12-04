@@ -13,30 +13,39 @@ import { CommonModule } from '@angular/common';
   styleUrl: './checkbox-feat.component.scss',
 })
 export class CheckboxFeatComponent {
-  // チェックボックスの状態を個別に管理するため、配列を使用
-  checkboxes: Checkbox[] = [
+  // チェックボックス(単体)のサンプル
+  singleCheckboxes: Checkbox[] = [
+    {
+      value: 'AAATS00',
+      label: 'テスト0画面',
+      name: 'single',
+      isChecked: false,
+    },
+  ];
+  // チェックボックス(複数)のサンプル
+  mulchCheckboxes: Checkbox[] = [
     {
       value: 'AAATS01',
       label: 'テスト1画面',
-      name: 'display',
+      name: 'mulch',
       isChecked: false,
     },
     {
       value: 'AAATS02',
       label: 'テスト2画面',
-      name: 'display',
+      name: 'mulch',
       isChecked: false,
     },
     {
       value: 'AAATS03',
       label: 'テスト3画面',
-      name: 'display',
+      name: 'mulch',
       isChecked: false,
     },
     {
       value: 'AAATS04',
       label: 'テスト4画面',
-      name: 'display',
+      name: 'mulch',
       isChecked: false,
       isDisabled: true,
     },
@@ -44,7 +53,11 @@ export class CheckboxFeatComponent {
 
   isDarkTheme = false;
 
-  onChangeCheckbox(index: number, checked: boolean) {
-    this.checkboxes[index].isChecked = checked;
+  onChangeSingleTypeCheckbox(index: number, checked: boolean) {
+    this.singleCheckboxes[index].isChecked = checked;
+  }
+
+  onChangeMulchTypeCheckbox(index: number, checked: boolean) {
+    this.mulchCheckboxes[index].isChecked = checked;
   }
 }
