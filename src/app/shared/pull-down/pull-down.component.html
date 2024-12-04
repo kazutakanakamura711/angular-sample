@@ -28,35 +28,17 @@
         >
           <!-- チェックボックス -->
           @if (isMulch) {
-            <label class="flex items-center mr-2 cursor-pointer">
-              <input
-                type="checkbox"
-                [checked]="isSelected(item)"
-                class="hidden peer"
-              />
-              <span
-                class="w-4 h-4 border border-dn-primary-2 rounded flex items-center justify-center peer-checked:bg-dn-primary-1 peer-checked:border-dn-primary-1"
-              >
-                @if (isSelected(item)) {
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-3 h-3 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                }
-              </span>
-            </label>
+            <app-checkbox
+              [label]="item.label"
+              [value]="item.id"
+              [name]="'pull-down-checkbox'"
+              [isChecked]="isSelected(item)"
+              (isCheckedChange)="selectItem(item)"
+              class="w-full"
+            />
+          } @else {
+            <span>{{ item.label }}</span>
           }
-          <span>{{ item.label }}</span>
         </li>
       }
     </ul>

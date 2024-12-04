@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CheckboxComponent } from '../checkbox/checkbox.component';
 
 export interface ListItem {
   id: string;
@@ -8,7 +9,7 @@ export interface ListItem {
 @Component({
   selector: 'pull-down',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CheckboxComponent],
   templateUrl: './pull-down.component.html',
   styleUrl: './pull-down.component.scss',
 })
@@ -46,17 +47,21 @@ export class PullDownComponent {
   selectItem(item: ListItem) {
     // シングルセレクトの場合
     if (!this.isMulch) {
-      this.selectedItems = [item];
-      this.isOpen = false;
+      this.selectedItems = [item]; // 選択されたアイテムだけを保持
+      this.isOpen = false; // リストを閉じる
       return;
     }
 
     // マルチセレクトの場合
-    const isSelected = this.selectedItems.some((i) => i.id === item.id);
+    const isSelectedItem = this.selectedItems.some(
+      (selectedItem) => selectedItem.id === item.id,
+    );
 
     // すでに選択されているアイテムは削除
-    if (isSelected) {
-      this.selectedItems = this.selectedItems.filter((i) => i.id !== item.id);
+    if (isSelectedItem) {
+      this.selectedItems = this.selectedItems.filter(
+        (selectedItem) => selectedItem.id !== item.id,
+      );
       return;
     }
 
