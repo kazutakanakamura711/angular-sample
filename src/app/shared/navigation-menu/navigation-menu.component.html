@@ -18,11 +18,12 @@
   </button>
 
   <!-- オーバーレイ -->
-  <div
-    *ngIf="isMenuVisible"
-    class="fixed inset-0 bg-black bg-opacity-50 z-40"
-    (click)="toggleMenu()"
-  ></div>
+  @if (isMenuVisible) {
+    <div
+      class="fixed inset-0 bg-black bg-opacity-50 z-40"
+      (click)="toggleMenu()"
+    ></div>
+  }
 
   <!-- メニュー -->
   <div
@@ -65,7 +66,7 @@
               [listItems]="categoryList"
               [selectedItems]="selectedCategoryItems"
               (itemSelected)="onItemSelected($event)"
-            ></pull-down>
+            />
             <button class="h-9 px-4 border-2 border-dn-line rounded-3xl">
               設定値にする
             </button>
@@ -82,7 +83,7 @@
               [listItems]="areaList"
               [selectedItems]="selectedAreaItems"
               (itemSelected)="onItemSelected($event)"
-            ></pull-down>
+            />
             <button class="h-9 px-4 border-2 border-dn-line rounded-3xl">
               設定値にする
             </button>
@@ -92,14 +93,13 @@
 
       <!-- ナビゲーションメニュー -->
       <ul class="flex flex-col gap-0 border-t border-dn-line">
-        <li
-          *ngFor="let item of navigationMenuList"
-          class="border-b border-dn-line px-4 py-6 last:border-b-0"
-        >
-          <button class="block w-full text-left focus:outline-none">
-            {{ item.label }}
-          </button>
-        </li>
+        @for (item of navigationMenuList; track item.id) {
+          <li class="border-b border-dn-line px-4 py-6 last:border-b-0">
+            <button class="block w-full text-left focus:outline-none">
+              {{ item.label }}
+            </button>
+          </li>
+        }
       </ul>
     </nav>
   </div>
