@@ -6,6 +6,7 @@ import { TitlePageComponent } from './pages/title-page/title-page.component';
 import { HeaderPageComponent } from './pages/header-page/header-page.component';
 import { PullDownPageComponent } from './pages/pull-down-page/pull-down-page.component';
 import { CheckboxPageComponent } from './pages/checkbox-page/checkbox-page.component';
+import { NavigationMenuPageComponent } from './pages/navigation-menu-page/navigation-menu-page.component';
 
 export const routes: Routes = [
   { path: 'tabs', component: TabsPageComponent },
@@ -15,4 +16,5 @@ export const routes: Routes = [
   { path: 'header', component: HeaderPageComponent },
   { path: 'pull-down', component: PullDownPageComponent },
   { path: 'checkbox', component: CheckboxPageComponent },
+  { path: 'navigation-menu', component: NavigationMenuPageComponent },
 ];

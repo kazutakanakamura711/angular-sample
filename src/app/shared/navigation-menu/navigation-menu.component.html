@@ -1,0 +1,106 @@
+<div class="relative">
+  <!-- 開閉ボタン -->
+  <button
+    class="w-6 h-6 border-2 border-dn-outline-border rounded flex items-center justify-center z-50"
+    (click)="toggleMenu()"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-3 h-3 text-dn-line"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="4"
+    >
+      <!-- 右向き矢印 -->
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+  <!-- オーバーレイ -->
+  <div
+    *ngIf="isMenuVisible"
+    class="fixed inset-0 bg-black bg-opacity-50 z-40"
+    (click)="toggleMenu()"
+  ></div>
+
+  <!-- メニュー -->
+  <div
+    class="absolute top-0 left-0 w-fit bg-dn-layer-1 shadow-lg z-50 transform transition-transform duration-300 ease-in-out"
+    [class.-translate-x-full]="!isMenuVisible"
+    [class.translate-x-0]="isMenuVisible"
+  >
+    <nav>
+      <!-- 開閉ボタン（メニュー内） -->
+      <button
+        class="absolute top-1 right-1 w-6 h-6 border-2 border-dn-outline-border rounded flex items-center justify-center z-50"
+        (click)="toggleMenu()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-3 h-3 text-dn-line"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="4"
+        >
+          <!-- 左向き矢印 -->
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+
+      <!-- カテゴリと局の設定 -->
+      <div class="flex flex-col gap-2 px-4 py-6">
+        <!-- カテゴリ切替 -->
+        <div class="flex flex-col gap-2">
+          <p>カテゴリ切替</p>
+          <div class="flex items-center gap-4">
+            <pull-down
+              [width]="width"
+              [isDarkTheme]="isDarkTheme"
+              [listItems]="categoryList"
+              [selectedItems]="selectedCategoryItems"
+              (itemSelected)="onItemSelected($event)"
+            ></pull-down>
+            <button class="h-9 px-4 border-2 border-dn-line rounded-3xl">
+              設定値にする
+            </button>
+          </div>
+        </div>
+
+        <!-- 局切替 -->
+        <div class="flex flex-col gap-2">
+          <p>局切替</p>
+          <div class="flex items-center gap-4">
+            <pull-down
+              [width]="width"
+              [isDarkTheme]="isDarkTheme"
+              [listItems]="areaList"
+              [selectedItems]="selectedAreaItems"
+              (itemSelected)="onItemSelected($event)"
+            ></pull-down>
+            <button class="h-9 px-4 border-2 border-dn-line rounded-3xl">
+              設定値にする
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ナビゲーションメニュー -->
+      <ul class="flex flex-col gap-0 border-t border-dn-line">
+        <li
+          *ngFor="let item of navigationMenuList"
+          class="border-b border-dn-line px-4 py-6 last:border-b-0"
+        >
+          <button class="block w-full text-left focus:outline-none">
+            {{ item.label }}
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

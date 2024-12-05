@@ -17,8 +17,11 @@
 
   @if (isOpen) {
     <ul
-      class="absolute w-full border border-dn-outline-border rounded max-h-48 overflow-y-auto"
-      [ngClass]="isDarkTheme ? 'bg-dn-layer-2-dark' : 'bg-dn-layer-2'"
+      class="absolute border border-dn-outline-border rounded max-h-48 overflow-y-auto z-10"
+      [ngClass]="[
+        isDarkTheme ? 'bg-dn-layer-2-dark' : 'bg-dn-layer-2',
+        width ? width : 'w-48'
+      ]"
     >
       @for (item of listItems; track item.id) {
         <li
