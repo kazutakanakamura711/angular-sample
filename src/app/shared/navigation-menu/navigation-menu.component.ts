@@ -8,8 +8,9 @@ import {
   AreaNameIdTypeDisplay,
 } from '../header/types';
 import { ScreenIdType, ScreenIdTypeDisplay } from './types';
+import { screenInfo } from './mockData';
 
-interface ScreenInfo {
+export interface ScreenInfo {
   id: ScreenIdType;
   permissions: {
     hasReadable: boolean;
@@ -48,64 +49,7 @@ export class NavigationMenuComponent {
   storeData: NavigationMenuStore = {
     categoryId: AreaCategoryIdType.Area,
     areaId: AreaNameIdType.Tokyo,
-    screenInfo: [
-      {
-        id: ScreenIdType.ItemsCoveredList,
-        permissions: {
-          hasReadable: true,
-          hasEditable: true,
-          hasPublishable: true,
-        },
-      },
-      {
-        id: ScreenIdType.ArticleDetails,
-        permissions: {
-          hasReadable: true,
-          hasEditable: true,
-          hasPublishable: false,
-        },
-      },
-      {
-        id: ScreenIdType.DigitalPublicationItemsList,
-        permissions: {
-          hasReadable: true,
-          hasEditable: false,
-          hasPublishable: true,
-        },
-      },
-      {
-        id: ScreenIdType.DigitalPublicationItemEdit,
-        permissions: {
-          hasReadable: false,
-          hasEditable: true,
-          hasPublishable: true,
-        },
-      },
-      {
-        id: ScreenIdType.TelegramList,
-        permissions: {
-          hasReadable: false,
-          hasEditable: false,
-          hasPublishable: true,
-        },
-      },
-      {
-        id: ScreenIdType.QuickPreview,
-        permissions: {
-          hasReadable: true,
-          hasEditable: false,
-          hasPublishable: false,
-        },
-      },
-      {
-        id: ScreenIdType.BannedCharacter,
-        permissions: {
-          hasReadable: false,
-          hasEditable: false,
-          hasPublishable: false,
-        },
-      },
-    ],
+    screenInfo: screenInfo,
   };
 
   // 表示/非表示を切り替え
