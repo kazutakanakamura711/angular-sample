@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ListItem, PullDownComponent } from '../pull-down/pull-down.component';
 import {
   AreaCategoryIdType,
@@ -8,6 +8,21 @@ import {
   AreaNameIdTypeDisplay,
 } from '../header/types';
 import { ScreenIdType, ScreenIdTypeDisplay } from './types';
+
+interface ScreenInfo {
+  id: ScreenIdType;
+  permissions: {
+    hasReadable: boolean;
+    hasEditable: boolean;
+    hasPublishable: boolean;
+  };
+}
+
+interface NavigationMenuStore {
+  categoryId: AreaCategoryIdType;
+  areaId: AreaNameIdType;
+  screenInfo: ScreenInfo[];
+}
 
 @Component({
   selector: 'navigation-menu',
@@ -18,11 +33,83 @@ import { ScreenIdType, ScreenIdTypeDisplay } from './types';
 })
 export class NavigationMenuComponent {
   // セレクトボックスの幅を指定
-  width: string = 'w-40';
+  @Input() width?: string;
   // マルチセレクトにするかどうか
-  isMulch: boolean = true;
+  @Input() isMulch?: boolean;
   // ダークテーマを使うか
-  isDarkTheme: boolean = false;
+  @Input() isDarkTheme?: boolean;
+
+  categoryId: AreaCategoryIdType;
+  areaId: AreaNameIdType;
+  selectedCategoryItems: ListItem[];
+  selectedAreaItems: ListItem[];
+
+  // 仮データ TODO:storeができればstoreから取得する
+  storeData: NavigationMenuStore = {
+    categoryId: AreaCategoryIdType.Area,
+    areaId: AreaNameIdType.Tokyo,
+    screenInfo: [
+      {
+        id: ScreenIdType.ItemsCoveredList,
+        permissions: {
+          hasReadable: true,
+          hasEditable: true,
+          hasPublishable: true,
+        },
+      },
+      {
+        id: ScreenIdType.ArticleDetails,
+        permissions: {
+          hasReadable: true,
+          hasEditable: true,
+          hasPublishable: false,
+        },
+      },
+      {
+        id: ScreenIdType.DigitalPublicationItemsList,
+        permissions: {
+          hasReadable: true,
+          hasEditable: false,
+          hasPublishable: true,
+        },
+      },
+      {
+        id: ScreenIdType.DigitalPublicationItemEdit,
+        permissions: {
+          hasReadable: false,
+          hasEditable: true,
+          hasPublishable: true,
+        },
+      },
+      {
+        id: ScreenIdType.TelegramList,
+        permissions: {
+          hasReadable: false,
+          hasEditable: false,
+          hasPublishable: true,
+        },
+      },
+      {
+        id: ScreenIdType.QuickPreview,
+        permissions: {
+          hasReadable: true,
+          hasEditable: false,
+          hasPublishable: false,
+        },
+      },
+      {
+        id: ScreenIdType.BannedCharacter,
+        permissions: {
+          hasReadable: false,
+          hasEditable: false,
+          hasPublishable: false,
+        },
+      },
+    ],
+  };
+
+  // 表示/非表示を切り替え
+  isMenuVisible = false;
 
   // カテゴリのリスト
   categoryList: ListItem[] = Object.keys(AreaCategoryIdType).map((key) => {
@@ -37,38 +124,47 @@ export class NavigationMenuComponent {
     return { id, label };
   });
 
-  // TODO:storeから取得したIDを使用する
-  categoryId = AreaCategoryIdType.Area;
-  areaId = AreaNameIdType.Ehime;
-
-  // 初期選択項目をIDに基づいて設定
-  selectedCategoryItems: ListItem[];
-  selectedAreaItems: ListItem[];
-
-  // メニュー項目
-  navigationMenuList = Object.keys(ScreenIdType).map((key) => {
-    const id = ScreenIdType[key as keyof typeof ScreenIdType];
-    const label = ScreenIdTypeDisplay[id];
-    return { id, label };
-  });
-
-  // メニューの表示状態
-  isMenuVisible = false;
+  // 権限を確認してからメニュー項目を作成
+  navigationMenuList = this.storeData.screenInfo
+    .filter((screen) => {
+      const { hasReadable, hasEditable, hasPublishable } = screen.permissions;
+      return hasReadable || hasEditable || hasPublishable;
+    })
+    .map((screen) => {
+      const label = ScreenIdTypeDisplay[screen.id];
+      return { id: screen.id, label };
+    });
 
   constructor() {
-    // categoryIdに一致する項目を検索して設定
-    const selectedCategoryItem = this.categoryList.find(
-      (item) => item.id === this.categoryId,
-    );
-    this.selectedCategoryItems = selectedCategoryItem
-      ? [selectedCategoryItem]
-      : [];
+    // 仮のstoreデータからカテゴリIDと地域IDを取得
+    this.categoryId = this.storeData.categoryId;
+    this.areaId = this.storeData.areaId;
 
-    // areaIdに一致する項目を検索して設定
-    const selectedAreaItem = this.areaList.find(
-      (item) => item.id === this.areaId,
+    // 初期値に基づいて選択項目を設定
+    this.selectedCategoryItems = [this.getCategoryItemById(this.categoryId)];
+    this.selectedAreaItems = [this.getAreaItemById(this.areaId)];
+  }
+
+  // 指定されたカテゴリIDに対応するカテゴリ項目を取得
+  getCategoryItemById(id: string): ListItem {
+    return (
+      this.categoryList.find((item) => item.id === id) || this.categoryList[0]
     );
-    this.selectedAreaItems = selectedAreaItem ? [selectedAreaItem] : [];
+  }
+
+  // 指定された地域IDに対応する地域項目を取得
+  getAreaItemById(id: string): ListItem {
+    return this.areaList.find((item) => item.id === id) || this.areaList[0];
+  }
+
+  // カテゴリ選択を初期値にリセット
+  resetCategoryToInitialValue(): void {
+    this.selectedCategoryItems = [this.getCategoryItemById(this.categoryId)];
+  }
+
+  // 地域選択を初期値にリセット
+  resetAreaToInitialValue(): void {
+    this.selectedAreaItems = [this.getAreaItemById(this.areaId)];
   }
 
   // 項目が選択されたときの処理

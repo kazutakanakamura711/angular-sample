@@ -67,7 +67,10 @@
               [selectedItems]="selectedCategoryItems"
               (itemSelected)="onItemSelected($event)"
             />
-            <button class="h-9 px-4 border-2 border-dn-line rounded-3xl">
+            <button
+              class="h-9 px-4 border-2 border-dn-line rounded-3xl"
+              (click)="resetCategoryToInitialValue()"
+            >
               設定値にする
             </button>
           </div>
@@ -84,7 +87,10 @@
               [selectedItems]="selectedAreaItems"
               (itemSelected)="onItemSelected($event)"
             />
-            <button class="h-9 px-4 border-2 border-dn-line rounded-3xl">
+            <button
+              class="h-9 px-4 border-2 border-dn-line rounded-3xl"
+              (click)="resetAreaToInitialValue()"
+            >
               設定値にする
             </button>
           </div>
@@ -94,8 +100,10 @@
       <!-- ナビゲーションメニュー -->
       <ul class="flex flex-col gap-0 border-t border-dn-line">
         @for (item of navigationMenuList; track item.id) {
-          <li class="border-b border-dn-line px-4 py-6 last:border-b-0">
-            <button class="block w-full text-left focus:outline-none">
+          <li class="border-b border-dn-line last:border-b-0">
+            <button
+              class="block w-full text-left px-4 py-6 focus:outline-none hover:opacity-70 transition-opacity duration-300"
+            >
               {{ item.label }}
             </button>
           </li>
