@@ -18,6 +18,8 @@ export class PullDownComponent {
   @Input() width?: string;
   // マルチセレクトにするかどうか
   @Input() isMulch?: boolean;
+  // 活性・非活性
+  @Input() isDisabled?: boolean;
   // ダークテーマを使うか
   @Input() isDarkTheme?: boolean;
   // 表示項目

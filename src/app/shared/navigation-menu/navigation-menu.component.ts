@@ -95,6 +95,11 @@ export class NavigationMenuComponent {
     return this.areaList.find((item) => item.id === id) || this.areaList[0];
   }
 
+  // 現在のカテゴリが地域かどうかを判定
+  isCategoryArea(): boolean {
+    return this.selectedCategoryItems[0]?.id === AreaCategoryIdType.Area;
+  }
+
   // カテゴリ選択を初期値にリセット
   resetCategoryToInitialValue(): void {
     this.selectedCategoryItems = [this.getCategoryItemById(this.categoryId)];
@@ -108,6 +113,16 @@ export class NavigationMenuComponent {
   // 項目が選択されたときの処理
   onItemSelected(items: ListItem[]) {
     console.log('選択された項目:', items);
+  }
+
+  // カテゴリが変更されたときの処理
+  onCategoryChange(selectedItems: ListItem[]): void {
+    this.selectedCategoryItems = selectedItems;
+  }
+
+  // 局が変更されたときの処理
+  onAreaChange(selectedItems: ListItem[]): void {
+    this.selectedAreaItems = selectedItems;
   }
 
   // 表示/非表示を切り替え

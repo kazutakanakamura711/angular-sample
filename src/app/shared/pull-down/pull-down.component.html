@@ -3,8 +3,10 @@
     class="border border-dn-outline-border rounded p-1.5 text-left flex items-center justify-between"
     [ngClass]="[
       width ? width : 'w-48',
-      isDarkTheme ? 'bg-dn-layer-2-dark text-white' : 'bg-dn-input text-black'
+      isDarkTheme ? 'bg-dn-layer-2-dark text-white' : 'bg-dn-input text-black',
+      isDisabled ? 'opacity-40' : ''
     ]"
+    [disabled]="isDisabled"
     (click)="isOpen = !isOpen"
   >
     <span>{{ selectedItemsString }}</span>
