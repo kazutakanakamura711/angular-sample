@@ -8,7 +8,7 @@ import {
   AreaNameIdTypeDisplay,
 } from '../header/types';
 import { ScreenIdType, ScreenIdTypeDisplay } from './types';
-import { screenInfo } from './mockData';
+import { mockData } from './mockData';
 
 export interface ScreenInfo {
   id: ScreenIdType;
@@ -19,7 +19,7 @@ export interface ScreenInfo {
   };
 }
 
-interface NavigationMenuStore {
+export interface NavigationMenuStore {
   categoryId: AreaCategoryIdType;
   areaId: AreaNameIdType;
   screenInfo: ScreenInfo[];
@@ -45,13 +45,6 @@ export class NavigationMenuComponent {
   selectedCategoryItems: ListItem[];
   selectedAreaItems: ListItem[];
 
-  // 仮データ TODO:storeができればstoreから取得する
-  storeData: NavigationMenuStore = {
-    categoryId: AreaCategoryIdType.Area,
-    areaId: AreaNameIdType.Tokyo,
-    screenInfo: screenInfo,
-  };
-
   // 表示/非表示を切り替え
   isMenuVisible = false;
 
@@ -61,6 +54,7 @@ export class NavigationMenuComponent {
     const label = AreaCategoryIdTypeDisplay[id];
     return { id, label };
   });
+
   // 地域のリスト
   areaList: ListItem[] = Object.keys(AreaNameIdType).map((key) => {
     const id = AreaNameIdType[key as keyof typeof AreaNameIdType];
@@ -69,7 +63,7 @@ export class NavigationMenuComponent {
   });
 
   // 権限を確認してからメニュー項目を作成
-  navigationMenuList = this.storeData.screenInfo
+  navigationMenuList = mockData.screenInfo
     .filter((screen) => {
       const { hasReadable, hasEditable, hasPublishable } = screen.permissions;
       return hasReadable || hasEditable || hasPublishable;
@@ -80,9 +74,9 @@ export class NavigationMenuComponent {
     });
 
   constructor() {
-    // 仮のstoreデータからカテゴリIDと地域IDを取得
-    this.categoryId = this.storeData.categoryId;
-    this.areaId = this.storeData.areaId;
+    // mockDataからカテゴリIDと地域IDを取得
+    this.categoryId = mockData.categoryId;
+    this.areaId = mockData.areaId;
 
     // 初期値に基づいて選択項目を設定
     this.selectedCategoryItems = [this.getCategoryItemById(this.categoryId)];
