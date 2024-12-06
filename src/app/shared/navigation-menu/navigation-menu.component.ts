@@ -114,4 +114,13 @@ export class NavigationMenuComponent {
   toggleMenu(): void {
     this.isMenuVisible = !this.isMenuVisible;
   }
+
+  // メニュー項目をクリックしたときの処理
+  onClickMenuItem(id: string): void {
+    console.log('選択したメニューのID:', id);
+    // TODO:route設定したら以下を使う
+    // import { Router } from '@angular/router';
+    // this.router.navigate([route]);
+    this.isMenuVisible = false;
+  }
 }
