@@ -7,7 +7,7 @@ export const mockData: NavigationMenuStore = {
   areaId: AreaNameIdType.Tokyo,
   screenInfo: [
     {
-      id: ScreenIdType.ItemsCoveredList,
+      id: ScreenIdType.CreateManuscript,
       permissions: {
         hasReadable: true,
         hasEditable: true,
@@ -15,7 +15,7 @@ export const mockData: NavigationMenuStore = {
       },
     },
     {
-      id: ScreenIdType.ArticleDetails,
+      id: ScreenIdType.InternetOrder,
       permissions: {
         hasReadable: true,
         hasEditable: true,
@@ -23,7 +23,7 @@ export const mockData: NavigationMenuStore = {
       },
     },
     {
-      id: ScreenIdType.DigitalPublicationItemsList,
+      id: ScreenIdType.ContentForInternet,
       permissions: {
         hasReadable: true,
         hasEditable: false,
@@ -31,7 +31,7 @@ export const mockData: NavigationMenuStore = {
       },
     },
     {
-      id: ScreenIdType.DigitalPublicationItemEdit,
+      id: ScreenIdType.Links,
       permissions: {
         hasReadable: false,
         hasEditable: true,
@@ -39,7 +39,7 @@ export const mockData: NavigationMenuStore = {
       },
     },
     {
-      id: ScreenIdType.TelegramList,
+      id: ScreenIdType.DataBroadcasting,
       permissions: {
         hasReadable: false,
         hasEditable: false,
@@ -47,7 +47,7 @@ export const mockData: NavigationMenuStore = {
       },
     },
     {
-      id: ScreenIdType.QuickPreview,
+      id: ScreenIdType.FeaturedBroadcast,
       permissions: {
         hasReadable: true,
         hasEditable: false,
@@ -55,7 +55,71 @@ export const mockData: NavigationMenuStore = {
       },
     },
     {
-      id: ScreenIdType.BannedCharacter,
+      id: ScreenIdType.NHKPlus,
+      permissions: {
+        hasReadable: true,
+        hasEditable: false,
+        hasPublishable: false,
+      },
+    },
+    {
+      id: ScreenIdType.Archive,
+      permissions: {
+        hasReadable: true,
+        hasEditable: false,
+        hasPublishable: false,
+      },
+    },
+    {
+      id: ScreenIdType.MaterialSets,
+      permissions: {
+        hasReadable: true,
+        hasEditable: false,
+        hasPublishable: false,
+      },
+    },
+    {
+      id: ScreenIdType.TemplateManagement,
+      permissions: {
+        hasReadable: true,
+        hasEditable: false,
+        hasPublishable: false,
+      },
+    },
+    {
+      id: ScreenIdType.PreservedContents,
+      permissions: {
+        hasReadable: true,
+        hasEditable: false,
+        hasPublishable: false,
+      },
+    },
+    {
+      id: ScreenIdType.VideoMemoList,
+      permissions: {
+        hasReadable: true,
+        hasEditable: false,
+        hasPublishable: false,
+      },
+    },
+    {
+      id: ScreenIdType.DeletePublicServerNotRequiredVideo,
+      permissions: {
+        hasReadable: true,
+        hasEditable: false,
+        hasPublishable: false,
+      },
+    },
+    {
+      id: ScreenIdType.MyPage,
+      permissions: {
+        hasReadable: true,
+        hasEditable: false,
+        hasPublishable: false,
+      },
+    },
+    {
+      id: ScreenIdType.SystemsManagement,
       permissions: {
         hasReadable: false,
         hasEditable: false,

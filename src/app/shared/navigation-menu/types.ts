@@ -1,23 +1,39 @@
 export const ScreenIdType = {
-  ItemsCoveredList: 'AAATS01',
-  ArticleDetails: 'AAATS02',
-  DigitalPublicationItemsList: 'AAATS03',
-  DigitalPublicationItemEdit: 'AAATS04',
-  TelegramList: 'AAATS05',
-  QuickPreview: 'AAATS06',
-  BannedCharacter: 'AAATS07',
+  CreateManuscript: 'AAATS01',
+  InternetOrder: 'AAATS02',
+  ContentForInternet: 'AAATS03',
+  Links: 'AAATS04',
+  DataBroadcasting: 'AAATS05',
+  FeaturedBroadcast: 'AAATS06',
+  NHKPlus: 'AAATS07',
+  Archive: 'AAATS08',
+  MaterialSets: 'AAATS09',
+  TemplateManagement: 'AAATS10',
+  PreservedContents: 'AAATS11',
+  VideoMemoList: 'AAATS12',
+  DeletePublicServerNotRequiredVideo: 'AAATS13',
+  MyPage: 'AAATS14',
+  SystemsManagement: 'AAATS15',
 } as const;
 
 export type ScreenIdType = (typeof ScreenIdType)[keyof typeof ScreenIdType];
 
 export const ScreenIdTypeDisplay = {
-  [ScreenIdType.ItemsCoveredList]: '取材項目一覧画面',
-  [ScreenIdType.ArticleDetails]: '記事詳細表示画面',
-  [ScreenIdType.DigitalPublicationItemsList]: 'デジタル公開項目一覧画面',
-  [ScreenIdType.DigitalPublicationItemEdit]: 'デジタル公開項目編集画面',
-  [ScreenIdType.TelegramList]: '電文一覧画面',
-  [ScreenIdType.QuickPreview]: '簡易一覧画面',
-  [ScreenIdType.BannedCharacter]: '使用禁止文字一覧表示画面',
+  [ScreenIdType.CreateManuscript]: '原稿制作',
+  [ScreenIdType.InternetOrder]: 'ネットオーダー',
+  [ScreenIdType.ContentForInternet]: 'ネット用コンテンツ',
+  [ScreenIdType.Links]: 'リンク集',
+  [ScreenIdType.DataBroadcasting]: 'データ放送',
+  [ScreenIdType.FeaturedBroadcast]: '特集',
+  [ScreenIdType.NHKPlus]: 'NHKプラス',
+  [ScreenIdType.Archive]: 'アーカイブ',
+  [ScreenIdType.MaterialSets]: '素材セット',
+  [ScreenIdType.TemplateManagement]: 'テンプレート管理',
+  [ScreenIdType.PreservedContents]: '保存コンテンツ',
+  [ScreenIdType.VideoMemoList]: '映像メモ一覧',
+  [ScreenIdType.DeletePublicServerNotRequiredVideo]: '公開サーバー不要動画削除',
+  [ScreenIdType.MyPage]: 'マイページ',
+  [ScreenIdType.SystemsManagement]: 'システム管理',
 } as const;
 
 export const parseScreenIdType = (type: string): ScreenIdType => {
