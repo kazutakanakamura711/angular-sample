@@ -19,9 +19,15 @@ export interface ScreenInfo {
   };
 }
 
+export interface CategoryInfo {
+  id: AreaCategoryIdType;
+  hasPermission: boolean;
+}
+
 export interface NavigationMenuStore {
-  categoryId: AreaCategoryIdType;
-  areaId: AreaNameIdType;
+  defaultCategoryId: AreaCategoryIdType;
+  defaultAreaId: AreaNameIdType;
+  categoryInfo: CategoryInfo[];
   screenInfo: ScreenInfo[];
 }
 
@@ -48,12 +54,15 @@ export class NavigationMenuComponent {
   // 表示/非表示を切り替え
   isMenuVisible = false;
 
-  // カテゴリのリスト
-  categoryList: ListItem[] = Object.keys(AreaCategoryIdType).map((key) => {
-    const id = AreaCategoryIdType[key as keyof typeof AreaCategoryIdType];
-    const label = AreaCategoryIdTypeDisplay[id];
-    return { id, label };
-  });
+  // 権限を確認してからカテゴリのリスト
+  categoryList: ListItem[] = mockData.categoryInfo
+    .filter((category) => category.hasPermission)
+    .map((category) => {
+      const id = category.id;
+      const label =
+        AreaCategoryIdTypeDisplay[id as keyof typeof AreaCategoryIdTypeDisplay];
+      return { id, label };
+    });
 
   // 地域のリスト
   areaList: ListItem[] = Object.keys(AreaNameIdType).map((key) => {
@@ -74,9 +83,9 @@ export class NavigationMenuComponent {
     });
 
   constructor() {
-    // mockDataからカテゴリIDと地域IDを取得
-    this.categoryId = mockData.categoryId;
-    this.areaId = mockData.areaId;
+    // mockDataからデフォルトカテゴリIDと地域IDを取得
+    this.categoryId = mockData.defaultCategoryId;
+    this.areaId = mockData.defaultAreaId;
 
     // 初期値に基づいて選択項目を設定
     this.selectedCategoryItems = [this.getCategoryItemById(this.categoryId)];
@@ -100,12 +109,12 @@ export class NavigationMenuComponent {
     return this.selectedCategoryItems[0]?.id === AreaCategoryIdType.Area;
   }
 
-  // カテゴリ選択を初期値にリセット
+  // カテゴリ選択をデフォルト値にリセット
   resetCategoryToInitialValue(): void {
     this.selectedCategoryItems = [this.getCategoryItemById(this.categoryId)];
   }
 
-  // 地域選択を初期値にリセット
+  // 地域選択をデフォルト値にリセット
   resetAreaToInitialValue(): void {
     this.selectedAreaItems = [this.getAreaItemById(this.areaId)];
   }
@@ -128,6 +137,14 @@ export class NavigationMenuComponent {
   // 表示/非表示を切り替え
   toggleMenu(): void {
     this.isMenuVisible = !this.isMenuVisible;
+  }
+
+  // カテゴリに地域が含まれているか判定
+  hasCategoryArea(): boolean {
+    const areaCategory = mockData.categoryInfo.find(
+      (category) => category.id === AreaCategoryIdType.Area,
+    );
+    return areaCategory ? areaCategory.hasPermission : false;
   }
 
   // メニュー項目をクリックしたときの処理

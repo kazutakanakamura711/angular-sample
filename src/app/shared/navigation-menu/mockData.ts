@@ -3,8 +3,26 @@ import { NavigationMenuStore } from './navigation-menu.component';
 import { ScreenIdType } from './types';
 
 export const mockData: NavigationMenuStore = {
-  categoryId: AreaCategoryIdType.Area,
-  areaId: AreaNameIdType.Tokyo,
+  defaultCategoryId: AreaCategoryIdType.Area,
+  defaultAreaId: AreaNameIdType.Tokyo,
+  categoryInfo: [
+    {
+      id: AreaCategoryIdType.All,
+      hasPermission: true,
+    },
+    {
+      id: AreaCategoryIdType.Area,
+      hasPermission: true,
+    },
+    {
+      id: AreaCategoryIdType.Easy,
+      hasPermission: true,
+    },
+    {
+      id: AreaCategoryIdType.International,
+      hasPermission: true,
+    },
+  ],
   screenInfo: [
     {
       id: ScreenIdType.CreateManuscript,
