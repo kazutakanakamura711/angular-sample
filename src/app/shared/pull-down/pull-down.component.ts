@@ -57,7 +57,7 @@ export class PullDownComponent {
   // 画面全体のクリックを監視
   @HostListener('document:click', ['$event'])
   onOutsideClick(event: MouseEvent): void {
-    if (!isHTMLElement(event.target) || event.target.closest('.pull-down'))
+    if (!isHTMLElement(event.target) || event.target.closest('.js-pull-down'))
       return;
     this.onClose.emit();
   }
