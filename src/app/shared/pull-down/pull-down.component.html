@@ -41,7 +41,19 @@
           [ngClass]="isDarkTheme ? 'text-white' : 'text-black'"
           (click)="selectItem(item)"
         >
-          <span>{{ item.label }}</span>
+          <!-- チェックボックス -->
+          @if (isMulch) {
+            <app-checkbox
+              [label]="item.label"
+              [value]="item.id"
+              [name]="'pull-down-checkbox'"
+              [isChecked]="isSelected(item)"
+              (isCheckedChange)="selectItem(item)"
+              class="w-full"
+            />
+          } @else {
+            <span>{{ item.label }}</span>
+          }
         </li>
       }
     </ul>
