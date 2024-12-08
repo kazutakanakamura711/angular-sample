@@ -1,10 +1,21 @@
-<div class="relative">
+<div class="relative js-pull-down">
+  <!-- オーバーレイ -->
+  @if (isOpen) {
+    <div
+      class="fixed inset-0 bg-black bg-opacity-0 z-10"
+      (click)="onClose.emit()"
+    ></div>
+  }
+
+  <!-- プルダウンボタン -->
   <button
     class="border border-dn-outline-border rounded p-1.5 text-left flex items-center justify-between"
     [ngClass]="[
       width ? width : 'w-48',
-      isDarkTheme ? 'bg-dn-layer-2-dark text-white' : 'bg-dn-input text-black'
+      isDarkTheme ? 'bg-dn-layer-2-dark text-white' : 'bg-dn-input text-black',
+      isDisabled ? 'opacity-40' : ''
     ]"
+    [disabled]="isDisabled"
     (click)="isOpen = !isOpen"
   >
     <span>{{ selectedItemsString }}</span>
@@ -15,10 +26,14 @@
     ></span>
   </button>
 
+  <!-- プルダウンリスト -->
   @if (isOpen) {
     <ul
-      class="absolute w-full border border-dn-outline-border rounded max-h-48 overflow-y-auto"
-      [ngClass]="isDarkTheme ? 'bg-dn-layer-2-dark' : 'bg-dn-layer-2'"
+      class="absolute border border-dn-outline-border rounded max-h-48 overflow-y-auto z-20"
+      [ngClass]="[
+        isDarkTheme ? 'bg-dn-layer-2-dark' : 'bg-dn-layer-2',
+        width ? width : 'w-48'
+      ]"
     >
       @for (item of listItems; track item.id) {
         <li
