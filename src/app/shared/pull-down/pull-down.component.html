@@ -1,4 +1,13 @@
-<div class="relative">
+<div class="relative pull-down">
+  <!-- オーバーレイ -->
+  @if (isOpen) {
+    <div
+      class="fixed inset-0 bg-black bg-opacity-0 z-10"
+      (click)="onClose.emit()"
+    ></div>
+  }
+
+  <!-- プルダウンボタン -->
   <button
     class="border border-dn-outline-border rounded p-1.5 text-left flex items-center justify-between"
     [ngClass]="[
@@ -17,9 +26,10 @@
     ></span>
   </button>
 
+  <!-- プルダウンリスト -->
   @if (isOpen) {
     <ul
-      class="absolute border border-dn-outline-border rounded max-h-48 overflow-y-auto z-10"
+      class="absolute border border-dn-outline-border rounded max-h-48 overflow-y-auto z-20"
       [ngClass]="[
         isDarkTheme ? 'bg-dn-layer-2-dark' : 'bg-dn-layer-2',
         width ? width : 'w-48'
@@ -31,19 +41,7 @@
           [ngClass]="isDarkTheme ? 'text-white' : 'text-black'"
           (click)="selectItem(item)"
         >
-          <!-- チェックボックス -->
-          @if (isMulch) {
-            <app-checkbox
-              [label]="item.label"
-              [value]="item.id"
-              [name]="'pull-down-checkbox'"
-              [isChecked]="isSelected(item)"
-              (isCheckedChange)="selectItem(item)"
-              class="w-full"
-            />
-          } @else {
-            <span>{{ item.label }}</span>
-          }
+          <span>{{ item.label }}</span>
         </li>
       }
     </ul>
