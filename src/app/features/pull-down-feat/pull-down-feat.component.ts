@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {
   PullDownComponent,
   ListItem,
-  Disclosure,
 } from '../../shared/pull-down/pull-down.component';
 import { CommonModule } from '@angular/common';
 
@@ -31,26 +30,10 @@ export class PullDownFeatComponent {
     { id: 'AAATS07', label: 'テスト7画面' },
   ];
 
-  // シングルセレクトのプルダウンの状態を管理するオブジェクト
-  singlePullDown: Disclosure = {
-    isOpen: false,
-    onOpen: () => (this.singlePullDown.isOpen = true),
-    onClose: () => (this.singlePullDown.isOpen = false),
-  };
-  // マルチセレクトのプルダウンの状態を管理するオブジェクト
-  multiPullDown: Disclosure = {
-    isOpen: false,
-    onOpen: () => (this.multiPullDown.isOpen = true),
-    onClose: () => (this.multiPullDown.isOpen = false),
-  };
+  // 初期選択項目
+  selectedItems: ListItem[] = [this.listItems[0]];
 
-  // 💡 シングルセレクトの選択項目
-  selectedSingleItem: ListItem[] = [this.listItems[1]];
-  // 💡 マルチセレクトの選択項目
-  selectedMultiItems: ListItem[] = [this.listItems[0]];
-
-  isOpen: boolean = false;
-
+  // 項目が選択されたときの処理
   onItemSelected(items: ListItem[]) {
     console.log('選択された項目:', items);
   }

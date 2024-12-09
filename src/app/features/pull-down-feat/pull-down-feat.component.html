@@ -1,26 +1,11 @@
 <div class="flex items-center gap-1">
   <p>SinglePullDown</p>
   <pull-down
-    [isOpen]="singlePullDown.isOpen"
-    [listItems]="listItems"
-    [selectedItems]="selectedSingleItem"
     [width]="width"
+    [isMulch]="isMulch"
     [isDarkTheme]="isDarkTheme"
-    (itemSelected)="onItemSelected($event)"
-    (onClose)="singlePullDown.onClose()"
-    (click)="singlePullDown.onOpen()"
-  />
-
-  <p>MultiPullDown</p>
-  <pull-down
-    [isOpen]="multiPullDown.isOpen"
     [listItems]="listItems"
-    [selectedItems]="selectedMultiItems"
-    [width]="width"
-    [isMulch]="true"
-    [isDarkTheme]="isDarkTheme"
+    [selectedItems]="selectedItems"
     (itemSelected)="onItemSelected($event)"
-    (onClose)="multiPullDown.onClose()"
-    (click)="multiPullDown.onOpen()"
   />
 </div>
