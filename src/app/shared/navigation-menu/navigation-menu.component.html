@@ -1,20 +1,24 @@
 <div class="relative">
   <!-- 開閉ボタン -->
   <button
-    class="w-6 h-6 border-2 border-dn-outline-border rounded flex items-center justify-center z-50"
+    class="bg-dn-layer-1 w-fit p-2 rounded-r-lg flex items-center justify-center"
     (click)="toggleMenu()"
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="w-3 h-3 text-dn-line"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      stroke-width="4"
+    <div
+      class="w-6 h-6 border-2 border-dn-outline-border rounded flex items-center justify-center"
     >
-      <!-- 右向き矢印 -->
-      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-    </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-3 h-3 text-dn-line"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="4"
+      >
+        <!-- 右向き矢印 -->
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
   </button>
 
   <!-- オーバーレイ -->
