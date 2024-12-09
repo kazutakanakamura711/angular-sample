@@ -62,7 +62,6 @@
           <div class="flex items-center gap-4">
             <pull-down
               [width]="width"
-              [isDarkTheme]="isDarkTheme"
               [listItems]="categoryList"
               [selectedItems]="selectedCategoryItems"
               (itemSelected)="onCategoryChange($event)"
@@ -83,7 +82,6 @@
             <div class="flex items-center gap-4">
               <pull-down
                 [width]="width"
-                [isDarkTheme]="isDarkTheme"
                 [listItems]="areaList"
                 [selectedItems]="selectedAreaItems"
                 [isDisabled]="!isCategoryArea()"

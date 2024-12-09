@@ -43,8 +43,6 @@ export class NavigationMenuComponent {
   @Input() width?: string;
   // マルチセレクトにするかどうか
   @Input() isMulch?: boolean;
-  // ダークテーマを使うか
-  @Input() isDarkTheme?: boolean;
 
   categoryId: AreaCategoryIdType;
   areaId: AreaNameIdType;

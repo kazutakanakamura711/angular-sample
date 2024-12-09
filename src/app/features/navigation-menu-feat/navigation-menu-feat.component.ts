@@ -9,7 +9,4 @@ import { NavigationMenuComponent } from '../../shared/navigation-menu/navigation
   templateUrl: './navigation-menu-feat.component.html',
   styleUrl: './navigation-menu-feat.component.scss',
 })
-export class NavigationMenuFeatComponent {
-  // ダークテーマを使うか
-  isDarkTheme: boolean = false;
-}
+export class NavigationMenuFeatComponent {}
