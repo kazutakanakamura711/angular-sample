@@ -1,0 +1,19 @@
+<app-header />
+<app-title [title]="title" [editingUsers]="editingUsers">
+  <!-- フォント切り替えボタンをfont-size-buttonスロットに挿入 -->
+  <font-size-changer font-size-button [isDarkTheme]="isDarkTheme" />
+</app-title>
+
+<div class="flex w-full">
+  <div class="border-b border-dn-primary-1">
+    <navigation-menu />
+  </div>
+  <tabs
+    class="w-full"
+    [tabs]="tabs"
+    [selectedTabIndex]="selectedTabIndex"
+    [maxLabelLength]="maxLabelLength"
+    [isDarkMode]="isDarkMode"
+    (selectedTabIndexChange)="selectedTabIndex = $event"
+  />
+</div>

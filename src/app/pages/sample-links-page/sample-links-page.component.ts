@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 })
 export class SampleLinksPageComponent {
   links = [
+    { path: 'common-layout', name: 'Common Layout Page' },
     { path: 'tabs', name: 'Tabs Page' },
     { path: 'tabs-pagination', name: 'Tabs Pagination Page' },
     { path: 'font-size-changer', name: 'Font Size Changer Page' },

@@ -8,12 +8,15 @@ import { HeaderPageComponent } from './pages/header-page/header-page.component';
 import { PullDownPageComponent } from './pages/pull-down-page/pull-down-page.component';
 import { CheckboxPageComponent } from './pages/checkbox-page/checkbox-page.component';
 import { NavigationMenuPageComponent } from './pages/navigation-menu-page/navigation-menu-page.component';
+import { CommonLayoutPageComponent } from './pages/common-layout-page/common-layout-page.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'sample-links', pathMatch: 'full' },
   {
     path: 'sample-links',
     component: SampleLinksPageComponent,
     children: [
+      { path: 'common-layout', component: CommonLayoutPageComponent },
       { path: 'tabs', component: TabsPageComponent },
       { path: 'tabs-pagination', component: TabsPaginationPageComponent },
       { path: 'font-size-changer', component: FontSizeChangerPageComponent },
