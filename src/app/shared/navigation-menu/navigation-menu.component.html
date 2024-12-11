@@ -1,0 +1,121 @@
+<div class="relative">
+  <!-- 開閉ボタン -->
+  <button
+    class="bg-dn-layer-1 w-fit p-2 rounded-r-lg flex items-center justify-center"
+    (click)="toggleMenu()"
+  >
+    <div
+      class="w-6 h-6 border-2 border-dn-outline-border rounded flex items-center justify-center"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-3 h-3 text-dn-line"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="4"
+      >
+        <!-- 右向き矢印 -->
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
+  </button>
+
+  <!-- オーバーレイ -->
+  @if (isMenuVisible) {
+    <div
+      class="fixed inset-0 bg-black bg-opacity-50 z-40"
+      (click)="toggleMenu()"
+    ></div>
+  }
+
+  <!-- メニュー -->
+  <div
+    class="absolute top-0 left-0 w-fit bg-dn-layer-1 shadow-lg z-50 transform transition-transform duration-300 ease-in-out"
+    [class.-translate-x-full]="!isMenuVisible"
+    [class.translate-x-0]="isMenuVisible"
+  >
+    <nav>
+      <!-- 開閉ボタン（メニュー内） -->
+      <button
+        class="absolute top-1 right-1 w-6 h-6 border-2 border-dn-outline-border rounded flex items-center justify-center z-50"
+        (click)="toggleMenu()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-3 h-3 text-dn-line"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="4"
+        >
+          <!-- 左向き矢印 -->
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+
+      <!-- カテゴリと局の設定 -->
+      <div class="flex flex-col gap-2 px-4 py-6">
+        <!-- カテゴリ切替 -->
+        <div class="flex flex-col gap-2">
+          <p>カテゴリ切替</p>
+          <div class="flex items-center gap-4">
+            <pull-down
+              [width]="width"
+              [listItems]="categoryList"
+              [selectedItems]="selectedCategoryItems"
+              (itemSelected)="onCategoryChange($event)"
+            />
+            <button
+              class="h-9 px-4 border-2 border-dn-line rounded-3xl"
+              (click)="resetCategoryToInitialValue()"
+            >
+              設定値にする
+            </button>
+          </div>
+        </div>
+
+        <!-- 局切替 -->
+        @if (hasCategoryArea()) {
+          <div class="flex flex-col gap-2">
+            <p>局切替</p>
+            <div class="flex items-center gap-4">
+              <pull-down
+                [width]="width"
+                [listItems]="areaList"
+                [selectedItems]="selectedAreaItems"
+                [isDisabled]="!isCategoryArea()"
+                (itemSelected)="onAreaChange($event)"
+              />
+              <button
+                class="h-9 px-4 border-2 border-dn-line rounded-3xl"
+                (click)="resetAreaToInitialValue()"
+                [disabled]="!isCategoryArea()"
+              >
+                設定値にする
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- ナビゲーションメニュー -->
+      <ul class="flex flex-col gap-0 border-t border-dn-line">
+        @for (item of navigationMenuList; track item.id) {
+          <li class="border-b border-dn-line last:border-b-0">
+            <button
+              class="block w-full text-left px-4 py-3 focus:outline-none hover:opacity-70 transition-opacity duration-300"
+              (click)="onClickMenuItem(item.id)"
+            >
+              {{ item.label }}
+            </button>
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+</div>

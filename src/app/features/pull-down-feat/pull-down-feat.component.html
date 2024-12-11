@@ -1,11 +1,26 @@
-<div class="flex items-center gap-1">
-  <p>テスト</p>
-  <pull-down
-    [width]="width"
-    [isMulch]="isMulch"
-    [isDarkTheme]="isDarkTheme"
-    [listItems]="listItems"
-    [selectedItems]="selectedItems"
-    (itemSelected)="onItemSelected($event)"
-  />
+<div class="flex flex-col gap-4">
+  <!-- シングルセレクトプルダウン -->
+  <div class="flex items-center gap-1">
+    <p>SinglePullDown</p>
+    <pull-down
+      [width]="width"
+      [isDarkTheme]="isDarkTheme"
+      [listItems]="listItems"
+      [selectedItems]="[listItems[0]]"
+      (itemSelected)="onItemSelected($event)"
+    />
+  </div>
+
+  <!-- マルチセレクトプルダウン -->
+  <div class="flex items-center gap-1">
+    <p>MultiPullDown</p>
+    <pull-down
+      [width]="width"
+      [isMulch]="isMulch"
+      [isDarkTheme]="isDarkTheme"
+      [listItems]="listItems"
+      [selectedItems]="selectedItems"
+      (itemSelected)="onItemSelected($event)"
+    />
+  </div>
 </div>

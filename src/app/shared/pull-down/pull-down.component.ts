@@ -6,6 +6,7 @@ export interface ListItem {
   id: string;
   label: string;
 }
+
 @Component({
   selector: 'pull-down',
   standalone: true,
@@ -18,6 +19,8 @@ export class PullDownComponent {
   @Input() width?: string;
   // マルチセレクトにするかどうか
   @Input() isMulch?: boolean;
+  // 活性・非活性
+  @Input() isDisabled?: boolean;
   // ダークテーマを使うか
   @Input() isDarkTheme?: boolean;
   // 表示項目
@@ -26,6 +29,8 @@ export class PullDownComponent {
   @Input() selectedItems: ListItem[] = [];
   // 項目がクリックされたときに親コンポーネントに通知するイベント
   @Output() itemSelected = new EventEmitter<ListItem[]>();
+  // 親コンポーネントに閉じるイベントを通知
+  @Output() onClose = new EventEmitter<void>();
 
   // ドロップダウンが開いているかどうかを管理
   isOpen = false;
@@ -43,12 +48,12 @@ export class PullDownComponent {
       : this.defaultPlaceholderMessage;
   }
 
-  // 項目を選択したときに呼ばれるメソッド
+  // 項目を選択したときの処理
   selectItem(item: ListItem) {
     // シングルセレクトの場合
     if (!this.isMulch) {
-      this.selectedItems = [item]; // 選択されたアイテムだけを保持
-      this.isOpen = false; // リストを閉じる
+      this.selectedItems = [item];
+      this.isOpen = false;
       return;
     }
 
