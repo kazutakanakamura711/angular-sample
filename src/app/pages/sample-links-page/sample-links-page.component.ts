@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'sample-links-page',
@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './sample-links-page.component.scss',
 })
 export class SampleLinksPageComponent {
+  constructor(private router: Router) {}
+
   links = [
     { path: 'common-layout', name: 'Common Layout Page' },
     { path: 'tabs', name: 'Tabs Page' },
@@ -21,4 +23,13 @@ export class SampleLinksPageComponent {
     { path: 'checkbox', name: 'Checkbox Page' },
     { path: 'navigation-menu', name: 'Navigation Menu Page' },
   ];
+
+  isSampleLinksPath(): boolean {
+    console.log(this.router.url);
+    return this.router.url === '/sample-links';
+  }
+
+  navigate(path: string): void {
+    this.router.navigate([path]);
+  }
 }
