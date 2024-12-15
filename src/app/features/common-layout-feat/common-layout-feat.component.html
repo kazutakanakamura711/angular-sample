@@ -8,12 +8,6 @@
   <div class="border-b border-dn-primary-1">
     <navigation-menu />
   </div>
-  <tabs
-    class="w-full"
-    [tabs]="tabs"
-    [selectedTabIndex]="selectedTabIndex"
-    [maxLabelLength]="maxLabelLength"
-    [isDarkMode]="isDarkMode"
-    (selectedTabIndexChange)="selectedTabIndex = $event"
-  />
+  <tab-menu class="w-full" />
 </div>
+<router-outlet />

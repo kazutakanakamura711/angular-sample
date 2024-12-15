@@ -9,6 +9,9 @@ import { PullDownPageComponent } from './pages/pull-down-page/pull-down-page.com
 import { CheckboxPageComponent } from './pages/checkbox-page/checkbox-page.component';
 import { NavigationMenuPageComponent } from './pages/navigation-menu-page/navigation-menu-page.component';
 import { CommonLayoutPageComponent } from './pages/common-layout-page/common-layout-page.component';
+import { SampleAFeatComponent } from './features/sample-a-feat/sample-a-feat.component';
+import { SampleBFeatComponent } from './features/sample-b-feat/sample-b-feat.component';
+import { SampleCFeatComponent } from './features/sample-c-feat/sample-c-feat.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'sample-links', pathMatch: 'full' },
@@ -16,7 +19,24 @@ export const routes: Routes = [
     path: 'sample-links',
     component: SampleLinksPageComponent,
     children: [
-      { path: 'common-layout', component: CommonLayoutPageComponent },
+      {
+        path: 'common-layout',
+        component: CommonLayoutPageComponent,
+        children: [
+          {
+            path: 'sampleA',
+            component: SampleAFeatComponent,
+          },
+          {
+            path: 'sampleB',
+            component: SampleBFeatComponent,
+          },
+          {
+            path: 'sampleC',
+            component: SampleCFeatComponent,
+          },
+        ],
+      },
       { path: 'tabs', component: TabsPageComponent },
       { path: 'tabs-pagination', component: TabsPaginationPageComponent },
       { path: 'font-size-changer', component: FontSizeChangerPageComponent },
