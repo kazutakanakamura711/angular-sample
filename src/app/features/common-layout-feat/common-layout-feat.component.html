@@ -1,0 +1,16 @@
+<div class="w-full h-[100vh] overflow-x-auto bg-dn-layer-1">
+  <div class="min-w-dn-base-width">
+    <app-header />
+    <app-title [title]="title" [editingUsers]="editingUsers">
+      <!-- フォント切り替えボタンをfont-size-buttonスロットに挿入 -->
+      <font-size-changer font-size-button [isDarkTheme]="isDarkTheme" />
+    </app-title>
+
+    <notice />
+    <div class="border-b border-dn-primary-1">
+      <navigation-menu />
+    </div>
+    <tab-menu class="w-full" />
+    <router-outlet />
+  </div>
+</div>
