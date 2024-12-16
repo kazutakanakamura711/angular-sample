@@ -3,6 +3,9 @@ module.exports = {
   content: ['./src/**/*.{html,ts}'],
   theme: {
     extend: {
+      minWidth: {
+        'dn-base-width': '1080px', //メインレイアウトの最小幅
+      },
       colors: {
         'dn-layer-1': '#EDEDED',
         'dn-layer-2': '#F7F7F7F7',

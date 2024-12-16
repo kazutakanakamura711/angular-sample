@@ -7,6 +7,7 @@ import { NavigationMenuComponent } from '../../shared/navigation-menu/navigation
 import { EditingUser } from '../../shared/concurrent-edit/concurrent-edit.component';
 import { TabMenuComponent } from '../../shared/tab-menu/tab-menu.component';
 import { RouterModule } from '@angular/router';
+import { NoticeComponent } from '../../shared/notice/notice.component';
 
 @Component({
   selector: 'common-layout-feat',
@@ -19,6 +20,7 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     NavigationMenuComponent,
     TabMenuComponent,
+    NoticeComponent,
   ],
   templateUrl: './common-layout-feat.component.html',
   styleUrl: './common-layout-feat.component.scss',
