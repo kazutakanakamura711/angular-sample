@@ -1,13 +1,15 @@
-@if (notice) {
-  <div
-    class="flex items-center justify-between bg-white p-2.5 rounded border border-dn-line"
-  >
+@if (isVisible) {
+  <div class="flex items-center justify-between bg-white p-2.5 rounded">
     <div class="flex items-center w-4/5">
       <!-- お知らせ内容 -->
-      <div class="flex-1 flex text-black truncate">{{ notice }}</div>
+      <div class="flex items-center flex-1">
+        <div class="mr-2 text-dn-primary-1">■</div>
+        <div class="text-black truncate">{{ notice }}</div>
+      </div>
       <div class="ml-4">他{{ noticeCount }}件</div>
       <button
         class="ml-6 border border-dn-line px-4 py-1 rounded-2xl hover:opacity-40 transition"
+        (click)="navigate()"
       >
         一覧を見る
       </button>
@@ -17,6 +19,7 @@
     <button
       class="flex items-center justify-center w-8 h-8 rounded-full hover:opacity-40 transition"
       aria-label="メニューを閉じる"
+      (click)="onCloseNotice()"
     >
       <span class="block relative w-4 h-4">
         <span
