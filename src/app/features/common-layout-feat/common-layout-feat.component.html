@@ -1,19 +1,27 @@
-<div class="w-full h-[100vh] overflow-x-auto bg-dn-layer-1">
-  <div class="min-w-dn-base-width">
-    <app-header />
-    <app-title [title]="title" [editingUsers]="editingUsers">
-      <!-- フォント切り替えボタンをfont-size-buttonスロットに挿入 -->
-      <font-size-changer font-size-button [isDarkTheme]="isDarkTheme" />
-    </app-title>
-    <div class="pt-2 pb-4 px-6">
-      <notice />
+<div class="flex flex-col h-screen overflow-hidden bg-dn-layer-1">
+  <!-- 固定ヘッダー -->
+  <app-header class="flex-shrink-0" />
+  <!-- 固定タイトル -->
+  <app-title
+    class="flex-shrink-0"
+    [title]="title"
+    [editingUsers]="editingUsers"
+  >
+    <font-size-changer font-size-button [isDarkTheme]="isDarkTheme" />
+  </app-title>
+  <!-- 固定お知らせ -->
+  <div class="pt-2 pb-4 px-6 flex-shrink-0">
+    <notice />
+  </div>
+  <!-- 固定ナビゲーションメニューとタブメニュー -->
+  <div class="flex w-full flex-shrink-0">
+    <div class="border-b border-dn-primary-1 flex-shrink-0">
+      <navigation-menu />
     </div>
-    <div class="flex w-full">
-      <div class="border-b border-dn-primary-1">
-        <navigation-menu />
-      </div>
-      <tab-menu class="w-full pt-4" />
-    </div>
+    <tab-menu class="w-full pt-4 flex-shrink-0" />
+  </div>
+  <!-- スクロール可能なコンテンツ -->
+  <div class="flex-1 overflow-y-auto">
     <router-outlet />
   </div>
 </div>
