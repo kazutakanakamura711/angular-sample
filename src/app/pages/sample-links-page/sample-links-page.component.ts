@@ -15,6 +15,7 @@ export class SampleLinksPageComponent implements OnInit {
 
   links = [
     { path: '/sample-links/common-layout', name: 'Common Layout Page' },
+    { path: '/sample-links/child-window', name: 'Child Window Page' },
     { path: '/sample-links/tabs', name: 'Tabs Page' },
     { path: '/sample-links/tabs-pagination', name: 'Tabs Pagination Page' },
     { path: '/sample-links/font-size-changer', name: 'Font Size Changer Page' },
@@ -27,6 +28,8 @@ export class SampleLinksPageComponent implements OnInit {
     { path: '/sample-links/common-layout/sampleB', name: 'SampleB' },
     { path: '/sample-links/common-layout/sampleC', name: 'SampleC' },
   ];
+
+  childWindow: Window | null = null;
 
   isSampleLinksPath = false;
   private lastUrl: string | null = null; // 最後のURLを記録
@@ -53,6 +56,19 @@ export class SampleLinksPageComponent implements OnInit {
   }
 
   navigate(path: string): void {
-    this.router.navigate([path]);
+    if (path !== '/sample-links/child-window') {
+      this.router.navigate([path]);
+      return;
+    }
+
+    if (this.childWindow && !this.childWindow.closed) {
+      this.childWindow.location.href = path;
+      this.childWindow.focus();
+      return;
+    }
+
+    const windowConfig =
+      'toolbar=no,location=yes,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=1080,height=1080';
+    this.childWindow = window.open(path, 'childWindow', windowConfig);
   }
 }

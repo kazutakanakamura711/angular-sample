@@ -12,6 +12,7 @@ import { CommonLayoutPageComponent } from './pages/common-layout-page/common-lay
 import { SampleAFeatComponent } from './features/sample-a-feat/sample-a-feat.component';
 import { SampleBFeatComponent } from './features/sample-b-feat/sample-b-feat.component';
 import { SampleCFeatComponent } from './features/sample-c-feat/sample-c-feat.component';
+import { ChildWindowFeatComponent } from './features/child-window-feat/child-window-feat.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'sample-links', pathMatch: 'full' },
@@ -36,6 +37,10 @@ export const routes: Routes = [
             component: SampleCFeatComponent,
           },
         ],
+      },
+      {
+        path: 'child-window',
+        component: ChildWindowFeatComponent,
       },
       { path: 'tabs', component: TabsPageComponent },
       { path: 'tabs-pagination', component: TabsPaginationPageComponent },
