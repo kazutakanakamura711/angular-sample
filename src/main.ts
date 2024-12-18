@@ -8,7 +8,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { provideStore } from '@ngrx/store';
-import { fontSizeReducer } from './app/store/font-size.reducer/font-size.reducer';
+import { fontSizeReducer } from './app/store/reducers/font-size.reducer';
 import { importProvidersFrom } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { routes } from './app/app.routes';

@@ -5,9 +5,9 @@ import { Observable } from 'rxjs'; // 状態を監視
 import {
   FontSize,
   FontSizeState,
-} from '../../store/font-size.reducer/font-size.reducer';
-import { selectFontSizeType } from '../../store/font-size.reducer/font-size.selectors';
-import { updateFontSize } from '../../store/font-size.reducer/font-size.actions';
+} from '../../store/reducers/font-size.reducer';
+import { selectFontSizeType } from '../../store/selectors/font-size.selectors';
+import { updateFontSize } from '../../store/actions/font-size.actions';
 
 @Component({
   selector: 'font-size-changer',
@@ -27,6 +27,12 @@ export class FontSizeChangerComponent {
 
   constructor(private store: Store<FontSizeState>) {
     this.fontSizeType$ = this.store.select(selectFontSizeType);
+  }
+
+  ngOnInit(): void {
+    this.fontSizeType$.subscribe((state) => {
+      console.log('Current font size state:', state);
+    });
   }
 
   // FontSizeChangerの表示切り替え

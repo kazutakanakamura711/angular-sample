@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { updateFontSize } from './font-size.actions';
+import { updateFontSize } from '../actions/font-size.actions';
 
 export type FontSize = 'small' | 'default' | 'large';
 
@@ -13,8 +13,11 @@ export const initialState: FontSizeState = {
 
 export const fontSizeReducer = createReducer(
   initialState,
-  on(updateFontSize, (state, { fontSize }) => ({
-    ...state,
-    fontSizeType: fontSize,
-  })),
+  on(updateFontSize, (state, { fontSize }) => {
+    console.log('Reducer executed: updateFontSize', fontSize);
+    return {
+      ...state,
+      fontSizeType: fontSize,
+    };
+  }),
 );
