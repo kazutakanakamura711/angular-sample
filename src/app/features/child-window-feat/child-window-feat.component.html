@@ -1,9 +1,12 @@
-<div class="w-full h-[100vh] overflow-x-auto bg-dn-layer-1">
-  <div class="min-w-dn-base-width">
-    <app-title [title]="title" [editingUsers]="editingUsers">
-      <!-- フォント切り替えボタンをfont-size-buttonスロットに挿入 -->
-      <font-size-changer font-size-button [isDarkTheme]="isDarkTheme" />
-    </app-title>
+<div class="flex flex-col h-screen bg-dn-layer-1">
+  <app-title
+    class="sticky top-0 z-10"
+    [title]="title"
+    [editingUsers]="editingUsers"
+  >
+    <font-size-changer font-size-button [isDarkTheme]="isDarkTheme" />
+  </app-title>
+  <div class="flex-1 overflow-y-auto">
     <router-outlet />
   </div>
 </div>

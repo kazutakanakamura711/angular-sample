@@ -27,6 +27,18 @@ export class SampleLinksPageComponent implements OnInit {
     { path: '/sample-links/common-layout/sampleA', name: 'SampleA' },
     { path: '/sample-links/common-layout/sampleB', name: 'SampleB' },
     { path: '/sample-links/common-layout/sampleC', name: 'SampleC' },
+    {
+      path: '/sample-links/child-window/sampleA',
+      name: 'Child Window SampleA',
+    },
+    {
+      path: '/sample-links/child-window/sampleB',
+      name: 'Child Window SampleB',
+    },
+    {
+      path: '/sample-links/child-window/sampleC',
+      name: 'Child Window SampleC',
+    },
   ];
 
   childWindow: Window | null = null;
@@ -56,17 +68,20 @@ export class SampleLinksPageComponent implements OnInit {
   }
 
   navigate(path: string): void {
-    if (path !== '/sample-links/child-window') {
-      this.router.navigate([path]);
+    // '/sample-links/child-window' で始まるパスをすべて対象にする
+    if (!path.startsWith('/sample-links/child-window')) {
+      this.router.navigate([path]); // 通常のページ遷移
       return;
     }
 
+    // 子ウィンドウが既に存在し、閉じられていない場合
     if (this.childWindow && !this.childWindow.closed) {
-      this.childWindow.location.href = path;
-      this.childWindow.focus();
+      this.childWindow.location.href = path; // URLを更新
+      this.childWindow.focus(); // 既存のタブにフォーカス
       return;
     }
 
+    // 新しい子ウィンドウを開く
     const windowConfig =
       'toolbar=no,location=yes,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=1080,height=1080';
     this.childWindow = window.open(path, 'childWindow', windowConfig);

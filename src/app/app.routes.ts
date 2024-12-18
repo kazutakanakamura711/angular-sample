@@ -41,6 +41,20 @@ export const routes: Routes = [
       {
         path: 'child-window',
         component: ChildWindowFeatComponent,
+        children: [
+          {
+            path: 'sampleA',
+            component: SampleAFeatComponent,
+          },
+          {
+            path: 'sampleB',
+            component: SampleBFeatComponent,
+          },
+          {
+            path: 'sampleC',
+            component: SampleCFeatComponent,
+          },
+        ],
       },
       { path: 'tabs', component: TabsPageComponent },
       { path: 'tabs-pagination', component: TabsPaginationPageComponent },

@@ -3,11 +3,17 @@ import { Component } from '@angular/core';
 import { TitleComponent } from '../../shared/title/title.component';
 import { FontSizeChangerComponent } from '../../shared/font-size-changer/font-size-changer.component';
 import { EditingUser } from '../../shared/concurrent-edit/concurrent-edit.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'child-window-feat',
   standalone: true,
-  imports: [CommonModule, TitleComponent, FontSizeChangerComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    TitleComponent,
+    FontSizeChangerComponent,
+  ],
   templateUrl: './child-window-feat.component.html',
   styleUrl: './child-window-feat.component.scss',
 })
