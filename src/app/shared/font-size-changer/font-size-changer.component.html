@@ -6,7 +6,7 @@
 
   @if (isFontSizeChangerVisible) {
     <div
-      class="absolute bottom-[110%] left-0 rounded p-1.5 border flex flex-col gap-1"
+      class="absolute top-[110%] left-1/2 transform -translate-x-1/2 rounded p-1.5 border flex flex-col gap-1 z-10"
       [ngClass]="{
         'bg-dn-layer-3 shadow-lg border-gray-300 text-black': !isDarkTheme,
         'bg-dn-layer-3-dark shadow-lg border-gray-700 text-white': isDarkTheme
@@ -19,11 +19,11 @@
           'bg-dn-layer-2': !isDarkTheme,
           'bg-dn-layer-2-dark text-white': isDarkTheme,
           'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
-            (fontSizeType$ | async) === 'small'
+            (fontSizeType$ | async) === FontSizeType.Small
         }"
-        (click)="changeFontSize('small')"
+        (click)="changeFontSize(FontSizeType.Small)"
       >
-        小
+        {{ FontSizeTypeDisplay[FontSizeType.Small] }}
       </button>
 
       <!-- 推奨ボタン -->
@@ -33,11 +33,11 @@
           'bg-dn-layer-2': !isDarkTheme,
           'bg-dn-layer-2-dark text-white': isDarkTheme,
           'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
-            (fontSizeType$ | async) === 'default'
+            (fontSizeType$ | async) === FontSizeType.Recommendation
         }"
-        (click)="changeFontSize('default')"
+        (click)="changeFontSize(FontSizeType.Recommendation)"
       >
-        推奨
+        {{ FontSizeTypeDisplay[FontSizeType.Recommendation] }}
       </button>
 
       <!-- 大ボタン -->
@@ -47,11 +47,11 @@
           'bg-dn-layer-2': !isDarkTheme,
           'bg-dn-layer-2-dark text-white': isDarkTheme,
           'bg-dn-primary-3 text-white border-2 border-dn-primary-1':
-            (fontSizeType$ | async) === 'large'
+            (fontSizeType$ | async) === FontSizeType.Large
         }"
-        (click)="changeFontSize('large')"
+        (click)="changeFontSize(FontSizeType.Large)"
       >
-        大
+        {{ FontSizeTypeDisplay[FontSizeType.Large] }}
       </button>
     </div>
   }

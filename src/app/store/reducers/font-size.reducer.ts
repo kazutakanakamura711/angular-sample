@@ -1,16 +1,17 @@
 import { createReducer, on } from '@ngrx/store';
 import { updateFontSize } from '../actions/font-size.actions';
-
-export type FontSize = 'small' | 'default' | 'large';
+import { FontSizeType } from '../../shared/font-size-changer/types';
 
 export interface FontSizeState {
-  fontSizeType: FontSize;
+  fontSizeType: FontSizeType;
 }
 
-export const initialState: FontSizeState = {
-  fontSizeType: 'default',
+// fontSizeの初期状態
+const initialState: FontSizeState = {
+  fontSizeType: FontSizeType.Recommendation,
 };
 
+// action(updateFontSize)を受け取った際の状態更新ロジック
 export const fontSizeReducer = createReducer(
   initialState,
   on(updateFontSize, (state, { fontSize }) => {
