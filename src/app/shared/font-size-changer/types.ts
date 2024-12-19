@@ -12,6 +12,12 @@ export const FontSizeTypeDisplay = {
   [FontSizeType.Large]: '大',
 } as const;
 
+export const FontSizeTypePercentage = {
+  [FontSizeType.Small]: '75%',
+  [FontSizeType.Recommendation]: '100%',
+  [FontSizeType.Large]: '125%',
+} as const;
+
 export const parseFontSizeType = (type: string): FontSizeType => {
   switch (type) {
     case FontSizeType.Small:
