@@ -6,10 +6,12 @@ export interface FontSizeState {
   fontSizeType: FontSizeType;
 }
 
-export const initialState: FontSizeState = {
+// フォントサイズの初期状態
+const initialState: FontSizeState = {
   fontSizeType: FontSizeType.Recommendation,
 };
 
+// updateFontSizeアクションを受け取った際の状態更新ロジック
 export const fontSizeReducer = createReducer(
   initialState,
   on(updateFontSize, (state, { fontSize }) => {
