@@ -2,12 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store'; // Storeをインポート
 import { Observable } from 'rxjs'; // 状態を監視
-import {
-  FontSize,
-  FontSizeState,
-} from '../../store/reducers/font-size.reducer';
+import { FontSizeState } from '../../store/reducers/font-size.reducer';
 import { selectFontSizeType } from '../../store/selectors/font-size.selectors';
 import { updateFontSize } from '../../store/actions/font-size.actions';
+import { FontSizeType, FontSizeTypeDisplay } from './types';
 
 @Component({
   selector: 'font-size-changer',
@@ -17,13 +15,16 @@ import { updateFontSize } from '../../store/actions/font-size.actions';
   styleUrl: './font-size-changer.component.scss',
 })
 export class FontSizeChangerComponent {
+  FontSizeType = FontSizeType;
+  FontSizeTypeDisplay = FontSizeTypeDisplay;
+
   // FontSizeChangerの表示/非表示を管理
   isFontSizeChangerVisible = false;
 
   @Input() isDarkTheme?: boolean;
 
   // 状態を監視するObservable
-  fontSizeType$: Observable<FontSize>;
+  fontSizeType$: Observable<FontSizeType>;
 
   constructor(private store: Store<FontSizeState>) {
     this.fontSizeType$ = this.store.select(selectFontSizeType);
@@ -41,7 +42,7 @@ export class FontSizeChangerComponent {
   }
 
   // フォントサイズを変更
-  changeFontSize(size: FontSize): void {
+  changeFontSize(size: FontSizeType): void {
     this.store.dispatch(updateFontSize({ fontSize: size }));
   }
 }
