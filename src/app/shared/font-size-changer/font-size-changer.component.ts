@@ -28,9 +28,8 @@ export class FontSizeChangerComponent {
 
   constructor(private store: Store<FontSizeState>) {
     this.fontSizeType$ = this.store.select(selectFontSizeType);
-  }
 
-  ngOnInit(): void {
+    // 状態の変更を監視
     this.fontSizeType$.subscribe((state) => {
       console.log('Current font size state:', state);
     });
