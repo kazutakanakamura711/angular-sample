@@ -14,7 +14,7 @@
       @for (checkbox of singleCheckboxes; track $index; let index = $index) {
         <app-checkbox
           [label]="checkbox.label"
-          [(isChecked)]="checkbox.isChecked"
+          [isChecked]="checkbox.isChecked"
           [value]="checkbox.value"
           [name]="checkbox.name"
           [isDisabled]="checkbox.isDisabled"
@@ -56,7 +56,7 @@
       @for (checkbox of mulchCheckboxes; track $index; let index = $index) {
         <app-checkbox
           [label]="checkbox.label"
-          [(isChecked)]="checkbox.isChecked"
+          [isChecked]="checkbox.isChecked"
           [value]="checkbox.value"
           [name]="checkbox.name"
           [isDisabled]="checkbox.isDisabled"
