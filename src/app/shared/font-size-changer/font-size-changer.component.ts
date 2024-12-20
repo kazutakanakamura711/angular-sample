@@ -5,11 +5,7 @@ import { Observable } from 'rxjs'; // 状態を監視
 import { FontSizeState } from '../../store/reducers/font-size.reducer';
 import { selectFontSizeType } from '../../store/selectors/font-size.selectors';
 import { updateFontSize } from '../../store/actions/font-size.actions';
-import {
-  FontSizeType,
-  FontSizeTypeDisplay,
-  FontSizeTypePercentage,
-} from './types';
+import { FontSizeType, FontSizeTypeDisplay } from './types';
 
 @Component({
   selector: 'font-size-changer',
@@ -47,7 +43,8 @@ export class FontSizeChangerComponent {
   // フォントサイズを変更
   changeFontSize(size: FontSizeType): void {
     this.store.dispatch(updateFontSize({ fontSize: size }));
-    const fontSizePercentage = FontSizeTypePercentage[size];
-    document.documentElement.style.fontSize = fontSizePercentage;
+    // ▼effectを使わない場合
+    // const fontSizePercentage = FontSizeTypePercentage[size];
+    // document.documentElement.style.fontSize = fontSizePercentage;
   }
 }
