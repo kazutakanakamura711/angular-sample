@@ -13,6 +13,7 @@ import { SampleAFeatComponent } from './features/sample-a-feat/sample-a-feat.com
 import { SampleBFeatComponent } from './features/sample-b-feat/sample-b-feat.component';
 import { SampleCFeatComponent } from './features/sample-c-feat/sample-c-feat.component';
 import { ChildWindowFeatComponent } from './features/child-window-feat/child-window-feat.component';
+import { InputPageComponent } from './pages/input-page/input-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'sample-links', pathMatch: 'full' },
@@ -56,6 +57,7 @@ export const routes: Routes = [
           },
         ],
       },
+      { path: 'input', component: InputPageComponent },
       { path: 'tabs', component: TabsPageComponent },
       { path: 'tabs-pagination', component: TabsPaginationPageComponent },
       { path: 'font-size-changer', component: FontSizeChangerPageComponent },
