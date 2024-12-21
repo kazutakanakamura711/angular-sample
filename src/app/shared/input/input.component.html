@@ -1,0 +1,50 @@
+@if (inputType === InputType.Input) {
+  <input
+    type="text"
+    [ngClass]="{
+      'bg-dn-layer-2': !isDarkTheme,
+      'bg-dn-layer-2-dark': isDarkTheme,
+      'text-white': isDarkTheme
+    }"
+    class="border border-dn-outline-border rounded p-1"
+    [style.width]="inputWidth"
+  />
+}
+
+@if (inputType === InputType.Num) {
+  <div class="flex items-center">
+    <input
+      type="text"
+      [(ngModel)]="modelValue"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkTheme,
+        'bg-dn-layer-2-dark': isDarkTheme,
+        'text-white': isDarkTheme
+      }"
+      [attr.maxlength]="maxLength"
+      class="border border-dn-outline-border rounded p-1"
+    />
+    <div class="ml-2">
+      <p
+        [ngClass]="{
+          'text-white': isDarkTheme
+        }"
+      >
+        {{ modelValue.length }}文字/{{ maxLength }}文字以上
+      </p>
+    </div>
+  </div>
+}
+
+@if (inputType === InputType.TextArea) {
+  <textarea
+    class="border border-dn-outline-border rounded p-1"
+    [ngClass]="{
+      'bg-dn-layer-2': !isDarkTheme,
+      'bg-dn-layer-2-dark': isDarkTheme,
+      'text-white': isDarkTheme
+    }"
+    [style.width]="textareaWidth"
+    [style.Height]="textareaHeight"
+  ></textarea>
+}

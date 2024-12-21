@@ -16,6 +16,7 @@ export class SampleLinksPageComponent implements OnInit {
   links = [
     { path: '/sample-links/common-layout', name: 'Common Layout Page' },
     { path: '/sample-links/child-window', name: 'Child Window Page' },
+    { path: '/sample-links/input', name: 'Input Page' },
     { path: '/sample-links/tabs', name: 'Tabs Page' },
     { path: '/sample-links/tabs-pagination', name: 'Tabs Pagination Page' },
     { path: '/sample-links/font-size-changer', name: 'Font Size Changer Page' },
