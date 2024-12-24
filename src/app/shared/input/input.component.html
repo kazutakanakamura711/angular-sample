@@ -48,3 +48,37 @@
     [style.Height]="textareaHeight"
   ></textarea>
 }
+
+@if (inputType === InputType.IconInput) {
+  <div class="flex items-center">
+    <span class="mr-2" (click)="startEditing()">_φ(･_･</span>
+    @if (isEditing) {
+      <div class="flex items-center">
+        <input
+          type="text"
+          [(ngModel)]="modelValue"
+          [readonly]="!isEditing"
+          [ngClass]="{
+            'bg-transparent text-black': !isDarkTheme,
+            'bg-transparent text-white': isDarkTheme,
+            'border border-dn-outline-border rounded': isEditing,
+            'border-none': !isEditing && modelValue.length > 0
+          }"
+          class="border border-dn-outline-border rounded p-1"
+        />
+        <span class="ml-2" (click)="clearInput()">X</span>
+        <span class="ml-2" (click)="confirmInput()">✔︎</span>
+      </div>
+    }
+    @if (!isEditing && modelValue.length > 0) {
+      <span
+        class="ml-2 p-1"
+        [ngClass]="{
+          'text-black': !isDarkTheme,
+          'text-white': isDarkTheme
+        }"
+        >{{ modelValue }}</span
+      >
+    }
+  </div>
+}
