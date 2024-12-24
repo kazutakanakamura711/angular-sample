@@ -5,12 +5,12 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {
   checkRequiredForText,
   checkNumChars,
+  checkEmailFormat,
 } from '../../utilities/validation/common.validation';
 import { InputType } from '../../shared/input/types';
 
@@ -29,14 +29,14 @@ export class ValidationFeatComponent {
   constructor(private fb: FormBuilder) {
     this.userForm = this.fb.group({
       name: ['', [checkRequiredForText, checkNumChars(2, 10)]],
-      email: ['', [checkRequiredForText, Validators.email]],
+      email: ['', [checkRequiredForText, checkEmailFormat]],
     });
   }
 
   onSubmit() {
     this.submitted = true;
     if (!this.userForm.valid) return;
-    console.log('フォーム送信', this.userForm.value);
+    console.log('送信しました。', this.userForm.value);
   }
 
   hasError(controlName: string, errorName: string): boolean {

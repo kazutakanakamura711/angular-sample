@@ -1,4 +1,9 @@
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import {
+  AbstractControl,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 
 // 必須チェック
 export const checkRequiredForText = (
@@ -31,3 +36,14 @@ export const checkNumChars =
     }
     return null;
   };
+
+// メールアドレスチェック
+export const checkEmailFormat: ValidatorFn = (
+  control: AbstractControl,
+): ValidationErrors | null => {
+  const emailValidator = Validators.email(control);
+  if (emailValidator) {
+    return { email: '有効なメールアドレスを入力してください。' };
+  }
+  return null;
+};
