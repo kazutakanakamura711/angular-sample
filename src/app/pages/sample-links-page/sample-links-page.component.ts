@@ -40,6 +40,7 @@ export class SampleLinksPageComponent implements OnInit {
       path: '/sample-links/child-window/sampleC',
       name: 'Child Window SampleC',
     },
+    { path: '/sample-links/validation', name: 'Validation Page' },
   ];
 
   childWindow: Window | null = null;

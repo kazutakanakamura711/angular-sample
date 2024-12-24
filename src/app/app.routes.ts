@@ -14,6 +14,7 @@ import { SampleBFeatComponent } from './features/sample-b-feat/sample-b-feat.com
 import { SampleCFeatComponent } from './features/sample-c-feat/sample-c-feat.component';
 import { ChildWindowFeatComponent } from './features/child-window-feat/child-window-feat.component';
 import { InputPageComponent } from './pages/input-page/input-page.component';
+import { ValidationPageComponent } from './pages/validation-page/validation-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'sample-links', pathMatch: 'full' },
@@ -66,6 +67,7 @@ export const routes: Routes = [
       { path: 'pull-down', component: PullDownPageComponent },
       { path: 'checkbox', component: CheckboxPageComponent },
       { path: 'navigation-menu', component: NavigationMenuPageComponent },
+      { path: 'validation', component: ValidationPageComponent },
     ],
   },
 ];
