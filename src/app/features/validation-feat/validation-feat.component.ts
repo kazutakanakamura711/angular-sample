@@ -29,25 +29,22 @@ export class ValidationFeatComponent {
 
   constructor(private fb: FormBuilder) {
     // フォームグループを作成し、送信時にのみバリデーションを実行するよう設定
-    this.userForm = this.fb.group(
-      {
-        name: this.fb.control('', {
-          validators: [
-            checkRequiredForText, // 必須チェック
-            checkNumChars(2, 10), // 文字数チェック（2文字以上10文字以下）
-          ],
-          updateOn: 'submit', // 送信時にのみバリデーションを実行
-        }),
-        email: this.fb.control('', {
-          validators: [
-            checkRequiredForText, // 必須チェック
-            checkEmailFormat, // メールアドレス形式のチェック
-          ],
-          updateOn: 'submit', // 送信時にのみバリデーションを実行
-        }),
-      },
-      { updateOn: 'submit' }, // フォーム全体にも updateOn: 'submit' を適用
-    );
+    this.userForm = this.fb.group({
+      name: this.fb.control('', {
+        validators: [
+          checkRequiredForText, // 必須チェック
+          checkNumChars(2, 10), // 文字数チェック（2文字以上10文字以下）
+        ],
+        updateOn: 'submit', // 送信時にのみバリデーションを実行
+      }),
+      email: this.fb.control('', {
+        validators: [
+          checkRequiredForText, // 必須チェック
+          checkEmailFormat, // メールアドレス形式のチェック
+        ],
+        updateOn: 'submit', // 送信時にのみバリデーションを実行
+      }),
+    });
   }
 
   // フォームの送信処理
