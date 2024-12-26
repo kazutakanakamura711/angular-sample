@@ -1,14 +1,35 @@
 <div class="p-4 shadow-md rounded-lg max-w-fit mx-auto">
-  <div class="text-center font-bold">API Data</div>
-  <h1>API Data</h1>
-  <div class="flex items-center justify-center gap-4 w-full">
-    @if (userData) {
-      <p>ID:{{ userData.id }}</p>
-      <p>Name:{{ userData.name }}</p>
-      <p>Permission:{{ userData.isPermission }}</p>
-      @if (!userData) {
-        <p>No Data</p>
-      }
+  <div class="text-center font-bold">Store Data</div>
+
+  <!-- ボタン -->
+  <div class="flex items-start justify-center gap-4 w-full">
+    <button
+      (click)="loadAndSaveToStore()"
+      class="bg-dn-primary-1 text-white rounded px-2 py-1"
+    >
+      Load and Save to Store
+    </button>
+  </div>
+
+  <!-- Store Data -->
+  <div class="flex items-start justify-center gap-4 w-full mt-4">
+    @if (storeUsers$ | async) {
+      <ul>
+        @for (user of storeUsers$ | async; track $index; let index = $index) {
+          <li class="border-b py-2">
+            <p>ID: {{ user.id }}</p>
+            <p>Name: {{ user.name }}</p>
+            <p>Permissions:</p>
+            <ul>
+              <li>Readable: {{ user.permission.hasReadable }}</li>
+              <li>Editable: {{ user.permission.hasEditable }}</li>
+              <li>Publishable: {{ user.permission.hasPublishable }}</li>
+            </ul>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p>No Store Data Available</p>
     }
   </div>
 </div>
