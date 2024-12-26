@@ -15,6 +15,7 @@ import { SampleCFeatComponent } from './features/sample-c-feat/sample-c-feat.com
 import { ChildWindowFeatComponent } from './features/child-window-feat/child-window-feat.component';
 import { InputPageComponent } from './pages/input-page/input-page.component';
 import { ValidationPageComponent } from './pages/validation-page/validation-page.component';
+import { SampleApiPageComponent } from './pages/sample-api-page/sample-api-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'sample-links', pathMatch: 'full' },
@@ -68,6 +69,7 @@ export const routes: Routes = [
       { path: 'checkbox', component: CheckboxPageComponent },
       { path: 'navigation-menu', component: NavigationMenuPageComponent },
       { path: 'validation', component: ValidationPageComponent },
+      { path: 'sample-api', component: SampleApiPageComponent },
     ],
   },
 ];
