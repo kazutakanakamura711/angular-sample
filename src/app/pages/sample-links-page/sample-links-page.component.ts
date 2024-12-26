@@ -41,6 +41,7 @@ export class SampleLinksPageComponent implements OnInit {
       name: 'Child Window SampleC',
     },
     { path: '/sample-links/validation', name: 'Validation Page' },
+    { path: '/sample-links/sample-api', name: 'Sample Api Page' },
   ];
 
   childWindow: Window | null = null;
