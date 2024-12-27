@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as UserActions from './store/actions/user.actions';
 import { selectUserData } from './store/selectors/user.selectors';
-import { MockUserData } from './types';
+import { MockUserData } from './store/model/user.model';
 
 @Component({
   selector: 'sample-api-feat',

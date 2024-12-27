@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as UserActions from '../actions/user.actions';
-import { MockUserData } from '../../types';
+import { MockUserData } from '../model/user.model';
 
 export interface UserState {
   userData: MockUserData[];
