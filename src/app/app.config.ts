@@ -6,8 +6,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
 import { userReducer } from './features/sample-api-feat/store/reducers/user.reducer';
-// import { fontSizeReducer } from './store/reducers/font-size.reducer';
-// import { FontSizeEffects } from './store/effects/font-size.effects';
+import { fontSizeReducer } from './store/reducers/font-size.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     // provideEffects([FontSizeEffects]), //effect使うとき
 
     provideStore({
-      // fontSize: fontSizeReducer,
+      fontSize: fontSizeReducer,
       user: userReducer, // `userReducer` を登録
     }),
     provideStoreDevtools({
