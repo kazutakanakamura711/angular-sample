@@ -2,7 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as UserActions from './store/actions/user.actions';
-import { selectUserData } from './store/selectors/user.selectors';
+import {
+  selectUserData,
+  selectUserError,
+} from './store/selectors/user.selectors';
 import { MockUserData } from './store/model/user.model';
 
 @Component({
@@ -14,25 +17,16 @@ import { MockUserData } from './store/model/user.model';
 })
 export class SampleApiFeatComponent {
   storeUsers$;
+  userError$;
 
   constructor(private store: Store) {
+    // コンストラクタ内で初期化時storeから取得
     this.storeUsers$ = this.store.select<MockUserData[]>(selectUserData);
+    this.userError$ = this.store.select<string | null>(selectUserError);
   }
 
+  // loadUserData をstoreに通知
   loadAndSaveToStore(): void {
-    fetch('https://api.example.com/users')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data: MockUserData[]) => {
-        console.log('API Data:', data);
-        this.store.dispatch(UserActions.saveUserData({ userData: data }));
-      })
-      .catch((error) => {
-        console.error('Error fetching user data:', error);
-      });
+    this.store.dispatch(UserActions.loadUserData());
   }
 }

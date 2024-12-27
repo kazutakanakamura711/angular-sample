@@ -11,6 +11,13 @@
     </button>
   </div>
 
+  <!-- エラー表示 -->
+  <div class="text-red-500">
+    @if (userError$ | async) {
+      <p>Error: {{ userError$ | async }}</p>
+    }
+  </div>
+
   <!-- Store Data -->
   <div class="flex items-start justify-center gap-4 w-full mt-4">
     @if (storeUsers$ | async) {
