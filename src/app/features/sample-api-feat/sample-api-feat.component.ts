@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as UserActions from './store/actions/user.actions';
+import {
+  selectUserData,
+  selectUserError,
+} from './store/selectors/user.selectors';
+import { MockUserData } from './store/model/user.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'sample-api-feat',
@@ -8,26 +16,20 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './sample-api-feat.component.html',
   styleUrl: './sample-api-feat.component.scss',
 })
-export class SampleApiFeatComponent implements OnInit {
-  userData: { id: string; name: string; isPermission: boolean } | null = null;
-  error: string | null = null;
+export class SampleApiFeatComponent {
+  // Observable<MockUserData[]> を明示的に指定
+  storeUsers$: Observable<MockUserData[]>;
+  // Observable<string | null> を明示的に指定
+  userError$: Observable<string | null>;
 
-  constructor() {}
+  constructor(private store: Store) {
+    // コンストラクタ内で初期化時storeから取得
+    this.storeUsers$ = this.store.select<MockUserData[]>(selectUserData);
+    this.userError$ = this.store.select<string | null>(selectUserError);
+  }
 
-  ngOnInit(): void {
-    // fetchを実行してデータを取得
-    fetch('https://api.example.com/user')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        this.userData = data; // データを保存
-      })
-      .catch((error) => {
-        this.error = error.message; // エラーを保存
-      });
+  // loadUserData をstoreに通知
+  loadAndSaveToStore(): void {
+    this.store.dispatch(UserActions.loadUserData());
   }
 }

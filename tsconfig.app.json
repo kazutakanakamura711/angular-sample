@@ -3,13 +3,10 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "useDefineForClassFields": false, //effect使うとき
     "outDir": "./out-tsc/app",
     "types": []
   },
-  "files": [
-    "src/main.ts"
-  ],
-  "include": [
-    "src/**/*.d.ts"
-  ]
+  "files": ["src/main.ts"],
+  "include": ["src/**/*.d.ts"]
 }
