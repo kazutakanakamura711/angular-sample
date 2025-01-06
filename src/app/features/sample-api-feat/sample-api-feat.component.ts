@@ -7,6 +7,7 @@ import {
   selectUserError,
 } from './store/selectors/user.selectors';
 import { MockUserData } from './store/model/user.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'sample-api-feat',
@@ -16,8 +17,10 @@ import { MockUserData } from './store/model/user.model';
   styleUrl: './sample-api-feat.component.scss',
 })
 export class SampleApiFeatComponent {
-  storeUsers$;
-  userError$;
+  // Observable<MockUserData[]> を明示的に指定
+  storeUsers$: Observable<MockUserData[]>;
+  // Observable<string | null> を明示的に指定
+  userError$: Observable<string | null>;
 
   constructor(private store: Store) {
     // コンストラクタ内で初期化時storeから取得
