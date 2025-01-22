@@ -11,16 +11,14 @@ export interface Tab {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './tabs-material.component.html',
-  styleUrls: ['./tabs-material.component.scss'],
+  styleUrl: './tabs-material.component.scss',
 })
 export class TabsMaterialComponent implements OnInit {
-  @Input() tabs: Tab[] = []; // 外部から渡されるタブデータ
+  @Input() tabs: Tab[] = [];
   @Input() maxLabelLength?: number;
-  @Input() maxVisibleTabs = 3; // 表示できる最大タブ数
   @Input() isDarkTheme?: boolean;
 
-  selectedTabIndex = 0; // 現在選択されているタブのインデックス
-  startIndex = 0; // ページネーションの開始インデックス
+  selectedTabIndex = 0;
 
   ngOnInit() {
     if (this.tabs.length > 0) {
@@ -28,34 +26,59 @@ export class TabsMaterialComponent implements OnInit {
     }
   }
 
+  private getTabListElement(): HTMLElement | null {
+    const tabListElement = document.querySelector(
+      '.js-tabs-container',
+    ) as HTMLElement;
+    if (!tabListElement) return null;
+    return tabListElement;
+  }
+
+  goToNext() {
+    const tabListElement = this.getTabListElement();
+    if (!tabListElement) return;
+
+    const scrollAmount = 256;
+    const maxScrollLeft =
+      tabListElement.scrollWidth - tabListElement.clientWidth;
+
+    const newScrollLeft = Math.min(
+      tabListElement.scrollLeft + scrollAmount,
+      maxScrollLeft,
+    );
+
+    tabListElement.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+  }
+
+  goToPrevious() {
+    const tabListElement = this.getTabListElement();
+    if (!tabListElement) return;
+
+    const scrollAmount = 256;
+    const newScrollLeft = Math.max(tabListElement.scrollLeft - scrollAmount, 0);
+
+    tabListElement.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+  }
+
+  goToFirst() {
+    const tabListElement = this.getTabListElement();
+    if (!tabListElement) return;
+
+    tabListElement.scrollTo({ left: 0, behavior: 'smooth' });
+  }
+
+  goToLast() {
+    const tabListElement = this.getTabListElement();
+    if (!tabListElement) return;
+
+    const maxScrollLeft =
+      tabListElement.scrollWidth - tabListElement.clientWidth;
+
+    tabListElement.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
+  }
+
   selectTab(index: number) {
     this.selectedTabIndex = index;
-  }
-
-  goToPreviousPage() {
-    if (this.startIndex > 0) {
-      this.startIndex--;
-    }
-  }
-
-  goToNextPage() {
-    if (this.startIndex + this.maxVisibleTabs < this.tabs.length) {
-      this.startIndex++;
-    }
-  }
-
-  isTabVisible(index: number): boolean {
-    return (
-      index >= this.startIndex && index < this.startIndex + this.maxVisibleTabs
-    );
-  }
-
-  goToFirstPage() {
-    this.startIndex = 0;
-  }
-
-  goToLastPage() {
-    this.startIndex = Math.max(0, this.tabs.length - this.maxVisibleTabs);
   }
 
   isActive(index: number): boolean {

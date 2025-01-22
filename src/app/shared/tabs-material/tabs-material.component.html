@@ -7,11 +7,9 @@
       [ngClass]="{
         'bg-dn-layer-2': !isDarkTheme,
         'bg-dn-layer-2-dark': isDarkTheme,
-        'text-[#7F7F7F]': isDarkTheme,
-        'opacity-40': startIndex === 0
+        'text-[#7F7F7F]': isDarkTheme
       }"
-      [disabled]="startIndex === 0"
-      (click)="goToFirstPage()"
+      (click)="goToFirst()"
     >
       |&lt;
     </button>
@@ -22,21 +20,19 @@
       [ngClass]="{
         'bg-dn-layer-2': !isDarkTheme,
         'bg-dn-layer-2-dark': isDarkTheme,
-        'text-[#7F7F7F]': isDarkTheme,
-        'opacity-40': startIndex === 0
+        'text-[#7F7F7F]': isDarkTheme
       }"
-      [disabled]="startIndex === 0"
-      (click)="goToPreviousPage()"
+      (click)="goToPrevious()"
     >
       &lt;
     </button>
   </div>
 
   <!-- タブリスト -->
-  <div class="flex overflow-x-hidden pt-[128px] mt-[-128px]">
-    <ul
-      class="flex js-list-none px-1.5 m-0 border-b border-dn-primary-1 min-w-fit gap-1.5 js-tab-list"
-    >
+  <div
+    class="flex pt-[128px] mt-[-128px] js-tabs-container overflow-x-scroll no-scrollbar"
+  >
+    <ul class="flex px-1.5 m-0 border-b border-dn-primary-1 min-w-fit gap-1.5">
       <li
         *ngFor="let tab of tabs; let i = index"
         class="js-tab-item dn-i-tooltip dn-i-tooltip--top flex-shrink-0"
@@ -44,7 +40,6 @@
           'text-[#0F0F0F66]': tab.isDisabled
         }"
         (click)="!tab.isDisabled && selectTab(i)"
-        [hidden]="!isTabVisible(i)"
         [attr.data-tooltip-text]="getTooltipLabel(tab.label)"
       >
         <button
@@ -72,11 +67,9 @@
       [ngClass]="{
         'bg-dn-layer-2': !isDarkTheme,
         'bg-dn-layer-2-dark': isDarkTheme,
-        'text-[#7F7F7F]': isDarkTheme,
-        'opacity-40': startIndex + maxVisibleTabs >= tabs.length
+        'text-[#7F7F7F]': isDarkTheme
       }"
-      [disabled]="startIndex + maxVisibleTabs >= tabs.length"
-      (click)="goToNextPage()"
+      (click)="goToNext()"
     >
       &gt;
     </button>
@@ -87,11 +80,9 @@
       [ngClass]="{
         'bg-dn-layer-2': !isDarkTheme,
         'bg-dn-layer-2-dark': isDarkTheme,
-        'text-[#7F7F7F]': isDarkTheme,
-        'opacity-40': startIndex + maxVisibleTabs >= tabs.length
+        'text-[#7F7F7F]': isDarkTheme
       }"
-      [disabled]="startIndex + maxVisibleTabs >= tabs.length"
-      (click)="goToLastPage()"
+      (click)="goToLast()"
     >
       &gt;|
     </button>
@@ -100,5 +91,17 @@
 
 <!-- 選択されたタブの内容 -->
 <div class="mt-4 p-4 border border-dn-outline-border rounded bg-dn-layer-2">
+  <!-- スクロールPrevボタン -->
+  <!-- <button (click)="scrollDiv($event, 'prev')">スクロールPrev</button> -->
+
+  <!-- スクロールNextボタン -->
+  <!-- <button (click)="scrollDiv($event, 'next')">スクロールNext</button> -->
+
+  <!-- タブラベル表示 -->
   <p>{{ tabs[selectedTabIndex].label }}</p>
+
+  <!-- スクロール可能な要素 -->
+  <!-- <div class="js-scroll overflow-x-scroll no-scrollbar">
+    TestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestText
+  </div> -->
 </div>
