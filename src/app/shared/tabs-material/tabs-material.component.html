@@ -1,0 +1,104 @@
+<div class="mx-auto flex items-start">
+  <!-- 固定ボタン（左） -->
+  <div class="flex gap-1.5 border-b border-dn-primary-1 pb-[1px] pr-1.5">
+    <!-- Go to First Tab -->
+    <button
+      class="px-2 py-[7px] border border-dn-outline-border rounded-l-lg whitespace-nowrap"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkTheme,
+        'bg-dn-layer-2-dark': isDarkTheme,
+        'text-[#7F7F7F]': isDarkTheme,
+        'opacity-40': startIndex === 0
+      }"
+      [disabled]="startIndex === 0"
+      (click)="goToFirstPage()"
+    >
+      |&lt;
+    </button>
+
+    <!-- Go to Previous Tab -->
+    <button
+      class="px-2 py-[7px] border border-dn-outline-border rounded-l-lg"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkTheme,
+        'bg-dn-layer-2-dark': isDarkTheme,
+        'text-[#7F7F7F]': isDarkTheme,
+        'opacity-40': startIndex === 0
+      }"
+      [disabled]="startIndex === 0"
+      (click)="goToPreviousPage()"
+    >
+      &lt;
+    </button>
+  </div>
+
+  <!-- タブリスト -->
+  <div class="flex overflow-x-hidden pt-[128px] mt-[-128px]">
+    <ul
+      class="flex js-list-none px-1.5 m-0 border-b border-dn-primary-1 min-w-fit gap-1.5 js-tab-list"
+    >
+      <li
+        *ngFor="let tab of tabs; let i = index"
+        class="js-tab-item dn-i-tooltip dn-i-tooltip--top flex-shrink-0"
+        [ngClass]="{
+          'text-[#0F0F0F66]': tab.isDisabled
+        }"
+        (click)="!tab.isDisabled && selectTab(i)"
+        [hidden]="!isTabVisible(i)"
+        [attr.data-tooltip-text]="getTooltipLabel(tab.label)"
+      >
+        <button
+          [ngClass]="{
+            'bg-dn-primary-3 text-white !border-2 !border-dn-primary-1 pb-2 mb-[-1px]':
+              isActive(i),
+            'bg-dn-layer-2': !isActive(i) && !isDarkTheme,
+            'bg-dn-layer-2-dark !text-white': !isActive(i) && isDarkTheme,
+            '!cursor-not-allowed': tab.isDisabled
+          }"
+          [disabled]="tab.isDisabled"
+          class="whitespace-nowrap cursor-pointer inline-block px-8 py-2 !border border-dn-outline-border !border-b-0 transition-colors rounded-t-lg hover:opacity-70"
+        >
+          {{ getTruncatedLabel(tab.label).display }}
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 固定ボタン（右） -->
+  <div class="flex gap-1.5 border-b border-dn-primary-1 pb-[1px] pl-1.5">
+    <!-- Go to Next Tab -->
+    <button
+      class="px-2 py-[7px] border border-dn-outline-border rounded-r-lg"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkTheme,
+        'bg-dn-layer-2-dark': isDarkTheme,
+        'text-[#7F7F7F]': isDarkTheme,
+        'opacity-40': startIndex + maxVisibleTabs >= tabs.length
+      }"
+      [disabled]="startIndex + maxVisibleTabs >= tabs.length"
+      (click)="goToNextPage()"
+    >
+      &gt;
+    </button>
+
+    <!-- Go to Last Tab -->
+    <button
+      class="px-2 py-[7px] border border-dn-outline-border rounded-r-lg whitespace-nowrap"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkTheme,
+        'bg-dn-layer-2-dark': isDarkTheme,
+        'text-[#7F7F7F]': isDarkTheme,
+        'opacity-40': startIndex + maxVisibleTabs >= tabs.length
+      }"
+      [disabled]="startIndex + maxVisibleTabs >= tabs.length"
+      (click)="goToLastPage()"
+    >
+      &gt;|
+    </button>
+  </div>
+</div>
+
+<!-- 選択されたタブの内容 -->
+<div class="mt-4 p-4 border border-dn-outline-border rounded bg-dn-layer-2">
+  <p>{{ tabs[selectedTabIndex].label }}</p>
+</div>
