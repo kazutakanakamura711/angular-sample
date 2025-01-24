@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 export interface Tab {
   label: string;
@@ -18,6 +18,8 @@ export class TabsMaterialComponent implements OnInit {
   @Input() maxLabelLength?: number;
   @Input() isDarkTheme?: boolean;
 
+  @ViewChild('tabListContainer') tabListContainerRef!: ElementRef; // .js-tabs-containerを参照
+
   selectedTabIndex = 0;
 
   ngOnInit() {
@@ -27,11 +29,7 @@ export class TabsMaterialComponent implements OnInit {
   }
 
   private getTabListElement(): HTMLElement | null {
-    const tabListElement = document.querySelector(
-      '.js-tabs-container',
-    ) as HTMLElement;
-    if (!tabListElement) return null;
-    return tabListElement;
+    return this.tabListContainerRef?.nativeElement || null;
   }
 
   goToNext() {
