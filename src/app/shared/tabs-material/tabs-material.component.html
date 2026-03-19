@@ -1,0 +1,105 @@
+<div class="mx-auto flex items-start">
+  <!-- 固定ボタン（左） -->
+  <div class="flex gap-1.5 border-b border-dn-primary-1 pb-[1px] pr-1.5">
+    <!-- Go to First Tab -->
+    <button
+      class="px-2 py-[7px] border border-dn-outline-border rounded-l-lg whitespace-nowrap"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkTheme,
+        'bg-dn-layer-2-dark': isDarkTheme,
+        'text-[#7F7F7F]': isDarkTheme
+      }"
+      (click)="goToFirst()"
+    >
+      |&lt;
+    </button>
+
+    <!-- Go to Previous Tab -->
+    <button
+      class="px-2 py-[7px] border border-dn-outline-border rounded-l-lg"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkTheme,
+        'bg-dn-layer-2-dark': isDarkTheme,
+        'text-[#7F7F7F]': isDarkTheme
+      }"
+      (click)="goToPrevious()"
+    >
+      &lt;
+    </button>
+  </div>
+
+  <!-- タブリスト -->
+  <div
+    class="flex pt-[128px] mt-[-128px] js-tabs-container overflow-x-scroll no-scrollbar"
+    #tabListContainer
+  >
+    <ul class="flex px-1.5 m-0 border-b border-dn-primary-1 min-w-fit gap-1.5">
+      <li
+        *ngFor="let tab of tabs; let i = index"
+        class="js-tab-item dn-i-tooltip dn-i-tooltip--top flex-shrink-0"
+        (click)="!tab.isDisabled && selectTab(i)"
+        [attr.data-tooltip-text]="getTooltipLabel(tab.label)"
+      >
+        <button
+          [ngClass]="{
+            'bg-dn-primary-3 text-white !border-2 !border-dn-primary-1 pb-2 mb-[-1px]':
+              isActive(i),
+            'bg-dn-layer-2': !isActive(i) && !isDarkTheme,
+            'bg-dn-layer-2-dark !text-white': !isActive(i) && isDarkTheme,
+            '!cursor-not-allowed opacity-40': tab.isDisabled
+          }"
+          [disabled]="tab.isDisabled"
+          class="whitespace-nowrap cursor-pointer inline-block px-8 py-2 !border border-dn-outline-border !border-b-0 transition-colors rounded-t-lg hover:opacity-70"
+        >
+          {{ getTruncatedLabel(tab.label).display }}
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 固定ボタン（右） -->
+  <div class="flex gap-1.5 border-b border-dn-primary-1 pb-[1px] pl-1.5">
+    <!-- Go to Next Tab -->
+    <button
+      class="px-2 py-[7px] border border-dn-outline-border rounded-r-lg"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkTheme,
+        'bg-dn-layer-2-dark': isDarkTheme,
+        'text-[#7F7F7F]': isDarkTheme
+      }"
+      (click)="goToNext()"
+    >
+      &gt;
+    </button>
+
+    <!-- Go to Last Tab -->
+    <button
+      class="px-2 py-[7px] border border-dn-outline-border rounded-r-lg whitespace-nowrap"
+      [ngClass]="{
+        'bg-dn-layer-2': !isDarkTheme,
+        'bg-dn-layer-2-dark': isDarkTheme,
+        'text-[#7F7F7F]': isDarkTheme
+      }"
+      (click)="goToLast()"
+    >
+      &gt;|
+    </button>
+  </div>
+</div>
+
+<!-- 選択されたタブの内容 -->
+<div class="mt-4 p-4 border border-dn-outline-border rounded bg-dn-layer-2">
+  <!-- スクロールPrevボタン -->
+  <!-- <button (click)="scrollDiv($event, 'prev')">スクロールPrev</button> -->
+
+  <!-- スクロールNextボタン -->
+  <!-- <button (click)="scrollDiv($event, 'next')">スクロールNext</button> -->
+
+  <!-- タブラベル表示 -->
+  <p>{{ tabs[selectedTabIndex].label }}</p>
+
+  <!-- スクロール可能な要素 -->
+  <!-- <div class="js-scroll overflow-x-scroll no-scrollbar">
+    TestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestTextTestText
+  </div> -->
+</div>

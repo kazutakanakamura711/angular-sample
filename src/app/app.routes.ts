@@ -16,6 +16,7 @@ import { ChildWindowFeatComponent } from './features/child-window-feat/child-win
 import { InputPageComponent } from './pages/input-page/input-page.component';
 import { ValidationPageComponent } from './pages/validation-page/validation-page.component';
 import { SampleApiPageComponent } from './pages/sample-api-page/sample-api-page.component';
+import { TabsMaterialPageComponent } from './pages/tabs-material-page/tabs-material-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'sample-links', pathMatch: 'full' },
@@ -62,6 +63,7 @@ export const routes: Routes = [
       { path: 'input', component: InputPageComponent },
       { path: 'tabs', component: TabsPageComponent },
       { path: 'tabs-pagination', component: TabsPaginationPageComponent },
+      { path: 'tabs-material', component: TabsMaterialPageComponent },
       { path: 'font-size-changer', component: FontSizeChangerPageComponent },
       { path: 'title', component: TitlePageComponent },
       { path: 'header', component: HeaderPageComponent },
